@@ -1,21 +1,25 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View,Text,Navigator } from '@tarojs/components'
+import {globalData} from "../../utils/common";
+
 import './index.less'
 
 interface LayoutProps {
-  title:string,
-  isHome:boolean,
-  barHeight:number,
-  titleHeight:number,
-  isBack:boolean,
+  title?:string,
+  isHome?:boolean,
+  noBack?:boolean,
 }
 
 class Layout extends Component<LayoutProps>{
-  
-  componentDidMount() {}
+  componentDidMount() {
 
+  }
   render(){
-    const {title,isHome,isBack,barHeight,titleHeight} = this.props;
+    const {title,isHome,noBack} = this.props;
+    const statusBarHeight = globalData.systemInfo?globalData.systemInfo.statusBarHeight:0;
+    const titleHeight = statusBarHeight+44;
+    const barHeight = statusBarHeight;
+
     return (
       <View>
         <View className='nav-header-title' style={{'height':titleHeight+'px'}}>
@@ -23,11 +27,11 @@ class Layout extends Component<LayoutProps>{
             (<Navigator
               className='nav-back'
               style={{"top":barHeight+'px'}}
-              o open-type='reLaunch'
+              open-type='reLaunch'
               url='/pages/index/index'
             >
               <Text className='icon iconfont icon-home'></Text>
-            </Navigator>):isBack?
+            </Navigator>):!noBack?
               (<Navigator
                 className='nav-back'
                 style={{"top":barHeight+'px'}}

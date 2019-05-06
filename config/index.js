@@ -1,8 +1,6 @@
-const path = require('path');
-
 const config = {
-  projectName: 'mm_buy_end',
-  date: '2019-4-29',
+  projectName: 'taro_template',
+  date: '2019-5-6',
   designWidth: 750,
   deviceRatio: {
     '640': 2.34 / 2,
@@ -11,9 +9,6 @@ const config = {
   },
   sourceRoot: 'src',
   outputRoot: 'dist',
-  alias:{
-    '@components': path.resolve(__dirname,'..','src/components'),
-  },
   plugins: {
     babel: {
       sourceMap: true,

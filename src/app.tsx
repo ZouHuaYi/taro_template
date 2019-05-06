@@ -1,11 +1,12 @@
 import Taro, { Component, Config } from '@tarojs/taro'
-import "@tarojs/async-await";
-import { Provider } from '@tarojs/redux';
-import './app.less'
-import dva from './utils/dva'
-import models from './models'
-import {globalData} from './utils/common'
+import "@tarojs/async-await"
+import {Provider} from '@tarojs/redux'
+import dva from "./utils/dva"
+import models from "./models"
+import {globalData} from "./utils/common"
+import {productDetail} from "./api/common";
 
+import './app.less'
 import Index from './pages/index'
 
 // 如果需要在 h5 环境中开启 React Devtools
@@ -14,12 +15,15 @@ import Index from './pages/index'
 //   require('nerv-devtools')
 // }
 
+
 const dvaApp = dva.createApp({
   initialState:{},
   models:models
 })
 
-const store = dvaApp.getStore();
+
+const store = dvaApp.getStore()
+
 
 class App extends Component {
 
@@ -32,7 +36,8 @@ class App extends Component {
    */
   config: Config = {
     pages: [
-      'pages/index/index'
+      'pages/index/index',
+      'pages/test/index'
     ],
     window: {
       backgroundTextStyle: 'light',
@@ -42,29 +47,11 @@ class App extends Component {
       navigationStyle:"custom"
     }
   }
-  /**
-   * 1.小程序打开的参数
-   * 2.从二维码进入的参数
-   * 3.获取设备信息
-   *
-   * */
-  async componentDidMount () {
-    const referrerInfo = this.$router.params.referrerInfo;
-    const query = this.$router.params.query;
-    !globalData.extraData && (globalData.extraData={});
-    if(referrerInfo&&referrerInfo.extraData){
-      globalData.extraData = referrerInfo.extraData;
-    }
-    if(query){
-      globalData.extraData = {
-        ...globalData.extraData,
-        ...query
-      }
-    }
 
+  async componentDidMount () {
     // 获取设备信息
-    const sys = await Taro.getSystemInfo();
-    sys && (globalData.systemInfo=sys);
+    const sys = await Taro.getSystemInfo()
+    sys && (globalData.systemInfo = sys)
 
   }
 
@@ -81,6 +68,7 @@ class App extends Component {
       <Provider store={store}>
         <Index />
       </Provider>
+
     )
   }
 }

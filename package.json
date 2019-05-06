@@ -1,8 +1,8 @@
 {
-  "name": "mm_buy_end",
+  "name": "taro_template",
   "version": "1.0.0",
   "private": true,
-  "description": "商城小程序",
+  "description": "dva模板",
   "scripts": {
     "build:weapp": "taro build --type weapp",
     "build:swan": "taro build --type swan",

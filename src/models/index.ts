@@ -1,3 +1,5 @@
-export default [
+import global from './global';
 
+export default [
+  global
 ]

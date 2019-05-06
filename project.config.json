@@ -1,7 +1,7 @@
 {
 	"miniprogramRoot": "dist/",
-	"projectname": "mm_buy_end",
-	"description": "商城小程序",
+	"projectname": "taro_template",
+	"description": "dva模板",
 	"appid": "wxe121a943656499fc",
 	"setting": {
 		"urlCheck": true,
