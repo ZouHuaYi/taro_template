@@ -4,7 +4,6 @@ import {Provider} from '@tarojs/redux'
 import dva from "./utils/dva"
 import models from "./models"
 import {globalData} from "./utils/common"
-import {productDetail} from "./api/common";
 
 import './app.less'
 import Index from './pages/index'
@@ -43,7 +42,7 @@ class App extends Component {
       backgroundTextStyle: 'light',
       navigationBarBackgroundColor: '#fff',
       navigationBarTitleText: 'WeChat',
-      navigationBarTextStyle: 'black',
+      navigationBarTextStyle: 'white',
       navigationStyle:"custom"
     }
   }

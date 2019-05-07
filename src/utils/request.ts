@@ -18,7 +18,7 @@ export default function request(options:ApiOptions) {
     let data = options.data;
     if(data && Object.keys(data).length>0){
       let keys =  Object.keys(data);
-      keys = keys.filter(name=> !!data[name]);
+      keys = keys.filter(name=> data[name]!==undefined);
       data = encodeURI(keys.map(name =>`${name}=${data[name]}`).join("&"));
     }else{
       data = {}
@@ -50,5 +50,4 @@ export default function request(options:ApiOptions) {
       }
     })
   })
-
 }

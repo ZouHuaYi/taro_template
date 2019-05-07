@@ -8,9 +8,12 @@ interface LayoutProps {
   title?:string,
   isHome?:boolean,
   noBack?:boolean,
+  children?:any
 }
 
 class Layout extends Component<LayoutProps>{
+  static externalClasses = ['app-page','layout']
+
   componentDidMount() {
 
   }
@@ -21,7 +24,7 @@ class Layout extends Component<LayoutProps>{
     const barHeight = statusBarHeight;
 
     return (
-      <View>
+      <View className='layout'>
         <View className='nav-header-title' style={{'height':titleHeight+'px'}}>
           {isHome?
             (<Navigator
@@ -43,7 +46,7 @@ class Layout extends Component<LayoutProps>{
           <View style={{"paddingTop": barHeight+"px"}} className='title-nav-com'><text className='tit'>{title?title:'正在加载'}</text></View>
         </View>
 
-        <View className='page-container' style={{"paddingTop":titleHeight+"px"}}>
+        <View className='app-page' style={{"paddingTop":titleHeight+"px"}}>
           {this.props.children}
         </View>
       </View>
