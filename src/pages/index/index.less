@@ -100,13 +100,17 @@
   overflow: hidden;
   .shop-item{
     width: 355px;
-    margin: 10px;
+    margin: 0 10px 20px;
+    border-radius: 12px;
+    border: 1Px solid #E3E3E3;
+    box-sizing: border-box;
+    overflow: hidden;
     float: left;
     .shop-img{
       .img{
         display: block;
         width: 100%;
-        height: 355px;
+        height: 354px;
       }
     }
     .shop-main{
@@ -154,8 +158,16 @@
             width: 100%;
             border-bottom: 1Px solid #7E7D82;
             left: 0;
-
+            top: 50%;
+            transform: translateY(-50%);
           }
+        }
+      }
+      .shop-buy-number{
+        padding-bottom: 10px;
+        .num{
+          font-size: 24px;
+          color: #969696;
         }
       }
     }

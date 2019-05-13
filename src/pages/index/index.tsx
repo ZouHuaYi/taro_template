@@ -69,26 +69,34 @@ export default class Index extends Component<IndexProps> {
                             <Text className='shoping-title-text'>热门产品</Text>
                           </View>
                           <View className='shop-list'>
-                            <View className='shop-item'>
-                              <View className='shop-img'>
-                                <Image className='img' src='http://mei3mei.oss-cn-shenzhen.aliyuncs.com/uploadfiles/banner/5f6c56ff1aae4df093039ad65b4a16ea.jpg'></Image>
-                              </View>
-                              <View className='shop-main'>
-                                <View className='shop-main-title'>
-                                  滚动条里面的小方块，能向上向下移动（或往左往右移动，取决于是垂直滚动条还是水平滚动条）
-                                </View>
-                                <View className='shop-main-sub'>
-                                  或往左往右移动，取决于是垂直滚动条还是水平滚动条能向上向下移动能向上向下移动能向上向下移动
-                                </View>
-                                <View className='shop-price'>
-                                  <Text className='true-p'>￥560</Text>
-                                  <Text className='false-p'>￥400</Text>
-                                </View>
-                                <View className='shop-buy-number'>
-                                  <Text>销量 780</Text>
-                                </View>
-                              </View>
-                            </View>
+                            {
+                              navList.map((item,key)=>{
+                                return(
+                                  <View className='shop-item' key={key}>
+                                    <View className='shop-img'>
+                                      <Image className='img' src='http://mei3mei.oss-cn-shenzhen.aliyuncs.com/uploadfiles/banner/5f6c56ff1aae4df093039ad65b4a16ea.jpg'></Image>
+                                    </View>
+                                    <View className='shop-main'>
+                                      <View className='shop-main-title'>
+                                        滚动条里面的小方块，能向上向下移动（或往左往右移动，取决于是垂直滚动条还是水平滚动条）
+                                      </View>
+                                      <View className='shop-main-sub'>
+                                        或往左往右移动，取决于是垂直滚动条还是水平滚动条能向上向下移动能向上向下移动能向上向下移动
+                                      </View>
+                                      <View className='shop-price'>
+                                        <Text className='true-p'>￥560</Text>
+                                        <Text className='false-p'>￥400</Text>
+                                      </View>
+                                      <View className='shop-buy-number'>
+                                        <Text className='num'>销量 780</Text>
+                                      </View>
+                                    </View>
+                                  </View>
+                                )
+                              })
+                            }
+
+
                           </View>
                         </View>
                       </View>

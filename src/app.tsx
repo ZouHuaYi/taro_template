@@ -34,16 +34,36 @@ class App extends Component {
    * 提示和声明 navigationBarTextStyle: 'black' | 'white' 类型冲突, 需要显示声明类型
    */
   config: Config = {
-    pages: [
+    "pages": [
       'pages/index/index',
-      'pages/test/index'
+      'pages/detail/detail',
+      'pages/cart/cart',
+      'pages/shopIndex/shopIndex'
     ],
-    window: {
+    "window": {
       backgroundTextStyle: 'light',
       navigationBarBackgroundColor: '#fff',
       navigationBarTitleText: 'WeChat',
       navigationBarTextStyle: 'white',
       navigationStyle:"custom"
+    },
+    "tabBar":{
+      "color":"#7D7C85",
+      "selectedColor": "#EE6697",
+      "list":[
+        {
+          "pagePath": "pages/index/index",
+          "iconPath": "./assets/tab/shop_default.png",
+          "selectedIconPath": "./assets/tab/shop_active.png",
+          "text": "全部商品"
+        },
+        {
+          "pagePath": "pages/index/index",
+          "iconPath": "./assets/tab/shop_default.png",
+          "selectedIconPath": "./assets/tab/shop_active.png",
+          "text": "全部商品"
+        }
+      ]
     }
   }
 

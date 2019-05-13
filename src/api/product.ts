@@ -14,7 +14,7 @@ export function productDetail(params:InterProductDetail) {  //userId=0&id=3498&t
 }
 
 export function productList(params) { // isHot=1&categoryId=4&userId=4165&page=1&rows=10&source=0&city=%E5%B9%BF%E5%B7%9E%E5%B8%82
-  return request({      // isRecommend=1&categoryId=4&userId=4165&page=1&rows=10&source=0&city=%E5%B9%BF%E5%B7%9E%E5%B8%82
+  return request({            // isRecommend=1&categoryId=4&userId=4165&page=1&rows=10&source=0&city=%E5%B9%BF%E5%B7%9E%E5%B8%82
     url:'/rest/product/list',
     data:{
       ...params
