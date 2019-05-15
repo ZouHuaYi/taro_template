@@ -42,6 +42,8 @@ class App extends Component {
       'pages/addArea/addArea',
       'pages/areaList/areaList',
       'pages/user/user',
+      'pages/search/search',
+      'pages/login/login',
     ],
     "window": {
       backgroundTextStyle: 'light',

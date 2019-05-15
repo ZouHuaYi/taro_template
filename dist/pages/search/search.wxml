@@ -1,0 +1,38 @@
+<block>
+    <layout noBack="{{false}}" __triggerObserer="{{ _triggerObserer }}" title="美上美商城" app-page="page-container" layout="page">
+        <view class="search-box">
+            <view class="search-input-btn">
+                <input class="s-input" type="text" placeholder="请输入要搜索的产品" />
+                <icon type="search" size="20"></icon>
+            </view>
+            <view class="s-history">
+                <view class="search-title">
+                    <view class="list-title"><text class="tit">搜索历史</text><text class="icon iconfont icon-shanchu"></text>
+                    </view>
+                    <view class="search-list">
+                        <view class="item">美上美</view>
+                        <view class="item">美上美</view>
+                        <view class="item">美上美</view>
+                        <view class="item">美上美</view>
+                        <view class="item">美上美</view>
+                        <view class="item">美上</view>
+                        <view class="item">美上美</view>
+                    </view>
+                </view>
+                <view class="search-title">
+                    <view class="list-title"><text class="tit">热门搜索</text>
+                    </view>
+                    <view class="search-list">
+                        <view class="item">美上美</view>
+                        <view class="item">美上美</view>
+                        <view class="item">美上美</view>
+                        <view class="item">美上美</view>
+                        <view class="item">美上美</view>
+                        <view class="item">美上</view>
+                        <view class="item">美上美</view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </layout>
+</block>

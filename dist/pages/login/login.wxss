@@ -1,0 +1,50 @@
+
+.login-box {
+  width: 100%;
+  background: #F4F4F4;
+}
+.login-container {
+  width: 100%;
+  padding: 30rpx 0;
+}
+.login-container .form-ground {
+  width: 100%;
+  padding: 20rpx 20rpx;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  background: #FFFFFF;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  border-bottom: 1rpx solid #F4F4F4;
+}
+.login-container .form-ground .input {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  font-size: 30rpx;
+}
+.login-container .form-ground .vcode {
+  display: inline-block;
+  background: #0CCCBB;
+  color: #FFFFFF;
+  padding: 0 20rpx;
+  line-height: 1.4rem;
+  border-radius: 10rpx;
+}
+.form-tip {
+  width: 100%;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 0 30rpx;
+  font-size: 20rpx;
+}
+.form-tip .vip {
+  color: #0CCCBB;
+}

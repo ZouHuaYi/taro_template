@@ -1,0 +1,19 @@
+<block>
+    <layout noBack="{{false}}" __triggerObserer="{{ _triggerObserer }}" title="登录/注册" app-page="page-container" layout="page">
+        <view class="login-box">
+            <form>
+                <view class="login-container">
+                    <view class="form-ground">
+                        <input class="input" type="text" placeholder="手机号" /><text class="vcode">发送验证码</text>
+                    </view>
+                    <view class="form-ground">
+                        <input class="input" type="text" placeholder="验证码" />
+                    </view>
+                </view>
+                <view class="form-tip"><text class="tip">温馨提示：未注册美上美App账号的手机号，登录时将会自动注册，且代表您已同意</text><text class="vip">《用户注册协议》</text>
+                </view>
+                <view class="form-btn"></view>
+            </form>
+        </view>
+    </layout>
+</block>

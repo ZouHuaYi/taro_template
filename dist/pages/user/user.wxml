@@ -1,5 +1,48 @@
 <block>
-    <layout noBack="{{false}}" __triggerObserer="{{ _triggerObserer }}" title="用户中心" app-page="page-container" layout="page">
-        <view class="user-box"></view>
+    <layout noBack="{{true}}" __triggerObserer="{{ _triggerObserer }}" title="用户中心" app-page="page-container" layout="page">
+        <view class="user-box">
+            <view class="user-header">
+                <view class="user-avter">
+                    <image class="img" src="http://mei3mei.oss-cn-shenzhen.aliyuncs.com/uploadfiles/banner/5f6c56ff1aae4df093039ad65b4a16ea.jpg"></image>
+                </view>
+                <view class="user-content">
+                    <view class="user-name">未登录</view>
+                    <view class="user-login">登录</view>
+                </view>
+            </view>
+            <view class="line-box"></view>
+            <view class="user-order">
+                <view class="order-title"><text class="order-tit">我的订单</text><text class="order-all">查看全部></text>
+                </view>
+                <view class="order-list">
+                    <view class="order-item">
+                        <image class="order-icon" src="http://mei3mei.oss-cn-shenzhen.aliyuncs.com/uploadfiles/banner/5f6c56ff1aae4df093039ad65b4a16ea.jpg"></image><text class="order-name">待付款</text>
+                    </view>
+                    <view class="order-item">
+                        <image class="order-icon" src="http://mei3mei.oss-cn-shenzhen.aliyuncs.com/uploadfiles/banner/5f6c56ff1aae4df093039ad65b4a16ea.jpg"></image><text class="order-name">待发货</text>
+                    </view>
+                    <view class="order-item">
+                        <image class="order-icon" src="http://mei3mei.oss-cn-shenzhen.aliyuncs.com/uploadfiles/banner/5f6c56ff1aae4df093039ad65b4a16ea.jpg"></image><text class="order-name">待收货</text>
+                    </view>
+                    <view class="order-item">
+                        <image class="order-icon" src="http://mei3mei.oss-cn-shenzhen.aliyuncs.com/uploadfiles/banner/5f6c56ff1aae4df093039ad65b4a16ea.jpg"></image><text class="order-name">待评价</text>
+                    </view>
+                    <view class="order-item">
+                        <image class="order-icon" src="http://mei3mei.oss-cn-shenzhen.aliyuncs.com/uploadfiles/banner/5f6c56ff1aae4df093039ad65b4a16ea.jpg"></image><text class="order-name">退款/售后</text>
+                    </view>
+                </view>
+            </view>
+            <view class="line-box"></view>
+            <view class="nav-list">
+                <view class="nav-item">
+                    <view class="nav-icon-text"><text class="icon iconfont icon-kefu"></text><text class="nav-text">联系客服</text>
+                    </view><text class="nav-to iconfont icon-jiantou4"></text>
+                </view>
+                <view class="nav-item">
+                    <view class="nav-icon-text"><text class="icon iconfont icon-kefu"></text><text class="nav-text">我的服务</text>
+                    </view><text class="nav-to iconfont icon-jiantou4"></text>
+                </view>
+            </view>
+        </view>
     </layout>
 </block>
