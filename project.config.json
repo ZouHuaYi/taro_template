@@ -30,15 +30,8 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 3,
+			"current": 6,
 			"list": [
-				{
-					"id": 0,
-					"name": "详情页",
-					"pathName": "pages/detail/detail",
-					"query": "",
-					"scene": null
-				},
 				{
 					"id": -1,
 					"name": "商品详情页",
@@ -58,6 +51,33 @@
 					"name": "全部商品",
 					"pathName": "pages/shopIndex/shopIndex",
 					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "确认订单",
+					"pathName": "pages/order/order",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "添加地址",
+					"pathName": "pages/addArea/addArea",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "地址管理",
+					"pathName": "pages/areaList/areaList",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "用户中心",
+					"pathName": "pages/user/user",
 					"scene": null
 				}
 			]

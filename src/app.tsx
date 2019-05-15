@@ -23,7 +23,6 @@ const dvaApp = dva.createApp({
 
 const store = dvaApp.getStore()
 
-
 class App extends Component {
 
   /**
@@ -38,7 +37,11 @@ class App extends Component {
       'pages/index/index',
       'pages/detail/detail',
       'pages/cart/cart',
-      'pages/shopIndex/shopIndex'
+      'pages/shopIndex/shopIndex',
+      'pages/order/order',
+      'pages/addArea/addArea',
+      'pages/areaList/areaList',
+      'pages/user/user',
     ],
     "window": {
       backgroundTextStyle: 'light',
@@ -69,9 +72,9 @@ class App extends Component {
 
   async componentDidMount () {
     // 获取设备信息
-    const sys = await Taro.getSystemInfo()
-    sys && (globalData.systemInfo = sys)
-
+    globalData.store = store;
+    const sys = await Taro.getSystemInfo();
+    sys && (globalData.systemInfo = sys);
   }
 
   componentDidShow () {}

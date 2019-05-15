@@ -1,0 +1,59 @@
+<block>
+    <layout noBack="{{false}}" __triggerObserer="{{ _triggerObserer }}" title="MM卖场" app-page="page-container" layout="page">
+        <view class="shopIndex-box">
+            <view class="shop-box-left">
+                <view class="shop-nav">
+                    <view class="shop-item active"><text class="shop-text">美妆</text>
+                    </view>
+                    <view class="shop-item"><text class="shop-text">美妆</text>
+                    </view>
+                    <view class="shop-item"><text class="shop-text">美妆</text>
+                    </view>
+                </view>
+            </view>
+            <view class="shop-box-right">
+                <view class="shop-title-select"><text class="nav active">销量</text><text class="nav">价格</text>
+                    <navigator class="search-btn" url="/pages/index/index" open-type="reLaunch">
+                        <icon size="20" type="search"></icon>
+                    </navigator>
+                </view>
+                <view class="shop-all-container">
+                    <scroll-view scroll-y="{{true}}" class="shop-scroll">
+                        <view class="scroll-box">
+                            <swiper class="banner-list">
+                                <swiper-item class="banner-item">
+                                    <image class="banner-img" src="http://mei3mei.oss-cn-shenzhen.aliyuncs.com/uploadfiles/banner/5f6c56ff1aae4df093039ad65b4a16ea.jpg"></image>
+                                </swiper-item>
+                                <swiper-item class="banner-item">
+                                    <image class="banner-img" src="http://mei3mei.oss-cn-shenzhen.aliyuncs.com/uploadfiles/banner/5f6c56ff1aae4df093039ad65b4a16ea.jpg"></image>
+                                </swiper-item>
+                            </swiper>
+                            <view class="shop-bar-list">
+                                <view class="shop-bar-item">
+                                    <view class="bar-img">
+                                        <image class="img" src="http://mei3mei.oss-cn-shenzhen.aliyuncs.com/uploadfiles/banner/5f6c56ff1aae4df093039ad65b4a16ea.jpg"></image>
+                                    </view>
+                                    <view class="bar-text">
+                                        <view class="bar-title">李先念同款：环视5X李先念同款：环视5X</view>
+                                        <view class="bar-price"><text class="bar-num">￥900.00</text><text class="bar-c-num">￥900.00</text>
+                                        </view>
+                                    </view>
+                                </view>
+                                <view class="shop-bar-item">
+                                    <view class="bar-img">
+                                        <image class="img" src="http://mei3mei.oss-cn-shenzhen.aliyuncs.com/uploadfiles/banner/5f6c56ff1aae4df093039ad65b4a16ea.jpg"></image>
+                                    </view>
+                                    <view class="bar-text">
+                                        <view class="bar-title">李先念同款</view>
+                                        <view class="bar-price"><text class="bar-num">￥900.00</text><text class="bar-c-num">￥900.00</text>
+                                        </view>
+                                    </view>
+                                </view>
+                            </view>
+                        </view>
+                    </scroll-view>
+                </view>
+            </view>
+        </view>
+    </layout>
+</block>

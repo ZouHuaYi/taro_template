@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "layout": "../../components/Layout/index",
+    "banner": "../../components/Banner/index"
+  }
+}

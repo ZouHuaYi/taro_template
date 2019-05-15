@@ -1,0 +1,13 @@
+
+.banner-box {
+  width: 100%;
+  height: 320rpx;
+}
+.banner-box .banner-item {
+  width: 100%;
+  height: 100%;
+}
+.banner-box .banner-item .banner-img {
+  display: block;
+  width: 100%;
+}

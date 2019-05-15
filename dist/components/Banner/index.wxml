@@ -1,0 +1,12 @@
+<block>
+    <view>
+        <swiper class="banner-box" autoplay="{{true}}" indicator-dots="{{true}}" indicator-color="#D0D0D0" indicator-active-color="#17CCBD">
+            <swiper-item class="banner-item">
+                <image class="banner-img" src="http://mei3mei.oss-cn-shenzhen.aliyuncs.com/uploadfiles/banner/5f6c56ff1aae4df093039ad65b4a16ea.jpg"></image>
+            </swiper-item>
+            <swiper-item class="banner-item">
+                <image class="banner-img" src="http://mei3mei.oss-cn-shenzhen.aliyuncs.com/uploadfiles/banner/5f6c56ff1aae4df093039ad65b4a16ea.jpg"></image>
+            </swiper-item>
+        </swiper>
+    </view>
+</block>

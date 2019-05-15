@@ -1,0 +1,50 @@
+<block>
+    <layout noBack="{{false}}" __triggerObserer="{{ _triggerObserer }}" title="地址管理" app-page="page-container" layout="page">
+        <view class="areaList-box">
+            <view class="area-list">
+                <view class="area-item">
+                    <view class="area-text">
+                        <view class="text-txt"><text class="area-name">邹华毅</text><text class="area-name">15016447087</text>
+                        </view>
+                        <view class="area-detail">广州市清河街道</view>
+                    </view>
+                    <view class="area-action">
+                        <view class="def"><text class="circle"></text><text class="default-txt">默认地址</text>
+                        </view>
+                        <view class="action"><text class="edit">编辑</text>|<text class="delete">删除</text>
+                        </view>
+                    </view>
+                </view>
+                <view class="area-item">
+                    <view class="area-text">
+                        <view class="text-txt"><text class="area-name">邹华毅</text><text class="area-name">15016447087</text>
+                        </view>
+                        <view class="area-detail">广州市清河街道</view>
+                    </view>
+                    <view class="area-action">
+                        <view class="def"><text class="circle"></text><text class="default-txt">默认地址</text>
+                        </view>
+                        <view class="action"><text class="edit">编辑</text>|<text class="delete">删除</text>
+                        </view>
+                    </view>
+                </view>
+                <view class="area-item">
+                    <view class="area-text">
+                        <view class="text-txt"><text class="area-name">邹华毅</text><text class="area-name">15016447087</text>
+                        </view>
+                        <view class="area-detail">广州市清河街道</view>
+                    </view>
+                    <view class="area-action">
+                        <view class="def"><text class="circle"></text><text class="default-txt">默认地址</text>
+                        </view>
+                        <view class="action"><text class="edit">编辑</text>|<text class="delete">删除</text>
+                        </view>
+                    </view>
+                </view>
+            </view>
+            <view class="add-new-area">
+                <button class="add-btn" type="primary">添加新地址</button>
+            </view>
+        </view>
+    </layout>
+</block>

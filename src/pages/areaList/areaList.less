@@ -1,0 +1,61 @@
+.page-container{
+  width: 100%;
+  box-sizing: border-box;
+  min-height: 100vh;
+  background: #FAFAFA;
+}
+
+.areaList-box{
+  width:100%;
+  padding: 30px 0;
+}
+.area-item{
+  width: 100%;
+  background: #FFFFFF;
+  box-sizing: border-box;
+  padding: 20px 30px 20px;
+  font-size: 28px;
+  margin-bottom: 30px;
+  .area-text{
+    .text-txt{
+      .area-name{
+        display: inline-block;
+        &:last-child{
+          margin-left: 30px;
+        }
+      }
+    }
+    .area-detail{
+      padding: 10px 0 20px;
+      border-bottom: 1px solid #efefef;
+    }
+  }
+  .area-action{
+    width: 100%;
+    padding-top: 20px;
+    overflow: hidden;
+    .def{
+      float: left;
+      .circle{
+        display: inline-block;
+        width: 30px;
+        height: 30px;
+        border: 1px solid #cccccc;
+        border-radius: 50%;
+        vertical-align: middle;
+        margin-right: 20px;
+      }
+    }
+    .action{
+      float: right;
+      .edit,.delete{
+        display: inline-block;
+        padding: 0 20px;
+      }
+      .delete{
+        color: #FF0C0C;
+      }
+    }
+  }
+}
+

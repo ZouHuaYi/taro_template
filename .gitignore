@@ -1,5 +1,6 @@
-dist/
+xdist/
 .temp/
 .rn_temp/
 node_modules/
 .DS_Store
+.idea

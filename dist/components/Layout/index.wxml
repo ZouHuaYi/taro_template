@@ -1,0 +1,48 @@
+<block>
+    <view>
+        <block>
+            <block wx:if="{{noHeader}}">
+                <view class="layout">
+                    <view class="single-btn" style="{{anonymousState__temp}}">
+                        <block>
+                            <block wx:if="{{isHome}}">
+                                <navigator class="nav-back" open-type="reLaunch" url="/pages/index/index"><text class="icon iconfont icon-home"></text>
+                                </navigator>
+                            </block>
+                            <block wx:else>
+                                <navigator class="nav-back" open-type="navigateBack"><text class="icon iconfont icon-jiantou4"></text>
+                                </navigator>
+                            </block>
+                        </block>
+                    </view>
+                    <view class="app-page">
+                        <slot></slot>
+                    </view>
+                </view>
+            </block>
+            <block wx:else>
+                <view class="layout">
+                    <view class="nav-header-title" style="{{anonymousState__temp2}}">
+                        <block>
+                            <block wx:if="{{isHome}}">
+                                <navigator class="nav-back" style="{{anonymousState__temp3}}" open-type="reLaunch" url="/pages/index/index"><text class="icon iconfont icon-home"></text>
+                                </navigator>
+                            </block>
+                            <block wx:else>
+                                <block wx:if="{{!noBack}}">
+                                    <navigator class="nav-back" style="{{anonymousState__temp4}}" open-type="navigateBack"><text class="icon iconfont icon-jiantou4"></text>
+                                    </navigator>
+                                </block>
+                            </block>
+                        </block>
+                        <view style="{{anonymousState__temp5}}" class="title-nav-com"><text className="tit" __triggerObserer="{{ _triggerObserer }}">{{title ? title : '正在加载'}}</text>
+                        </view>
+                    </view>
+                    <view class="app-page" style="{{anonymousState__temp6}}">
+                        <slot></slot>
+                    </view>
+                </view>
+            </block>
+        </block>
+    </view>
+</block>

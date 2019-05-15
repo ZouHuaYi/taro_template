@@ -1,0 +1,25 @@
+<block>
+    <layout noBack="{{false}}" __triggerObserer="{{ _triggerObserer }}" title="添加地址" app-page="page-container" layout="page">
+        <view class="addArea-box">
+            <form class="form">
+                <view class="form-box">
+                    <view class="form-ground"><text class="form-title">收货人</text>
+                        <input type="text" placeholder="请输入收件人姓名" />
+                    </view>
+                    <view class="form-ground"><text class="form-title">联系电话</text>
+                        <input type="text" placeholder="请输入联系方式" />
+                    </view>
+                    <view class="form-ground"><text class="form-title">所在地区</text>
+                        <input type="text" placeholder="请选择所在地区" />
+                    </view>
+                    <view class="form-ground"><text class="form-title">详细地址</text>
+                        <input type="text" placeholder="请输入详细地址" />
+                    </view>
+                </view>
+                <view class="add-new-area">
+                    <button class="add-btn" type="primary">保存地址</button>
+                </view>
+            </form>
+        </view>
+    </layout>
+</block>

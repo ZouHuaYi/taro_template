@@ -1,0 +1,37 @@
+
+.page-container {
+  width: 100%;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  min-height: 100vh;
+  background: #FAFAFA;
+}
+.addArea-box {
+  width: 100%;
+}
+.form {
+  width: 100%;
+  padding: 30rpx;
+}
+.form-box {
+  width: 100%;
+  background: #FFFFFF;
+  padding: 10rpx 30rpx;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+.form-ground {
+  width: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  font-size: 30rpx;
+  padding: 10rpx 0;
+}
+.form-ground .form-title {
+  width: 160rpx;
+  padding-right: 20rpx;
+  line-height: 1.4rem;
+  text-align: right;
+}

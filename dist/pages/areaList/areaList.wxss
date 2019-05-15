@@ -1,0 +1,59 @@
+
+.page-container {
+  width: 100%;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  min-height: 100vh;
+  background: #FAFAFA;
+}
+.areaList-box {
+  width: 100%;
+  padding: 30rpx 0;
+}
+.area-item {
+  width: 100%;
+  background: #FFFFFF;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 20rpx 30rpx 20rpx;
+  font-size: 28rpx;
+  margin-bottom: 30rpx;
+}
+.area-item .area-text .text-txt .area-name {
+  display: inline-block;
+}
+.area-item .area-text .text-txt .area-name:last-child {
+  margin-left: 30rpx;
+}
+.area-item .area-text .area-detail {
+  padding: 10rpx 0 20rpx;
+  border-bottom: 1rpx solid #efefef;
+}
+.area-item .area-action {
+  width: 100%;
+  padding-top: 20rpx;
+  overflow: hidden;
+}
+.area-item .area-action .def {
+  float: left;
+}
+.area-item .area-action .def .circle {
+  display: inline-block;
+  width: 30rpx;
+  height: 30rpx;
+  border: 1rpx solid #cccccc;
+  border-radius: 50%;
+  vertical-align: middle;
+  margin-right: 20rpx;
+}
+.area-item .area-action .action {
+  float: right;
+}
+.area-item .area-action .action .edit,
+.area-item .area-action .action .delete {
+  display: inline-block;
+  padding: 0 20rpx;
+}
+.area-item .area-action .action .delete {
+  color: #FF0C0C;
+}

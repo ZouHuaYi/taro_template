@@ -72,10 +72,26 @@ class ShopIndex extends Component<ShopIndexProps,ShopIndexState > {
                   <View className='shop-bar-list'>
                     <View className='shop-bar-item' >
                       <View className='bar-img'>
-
+                        <Image className='img' src='http://mei3mei.oss-cn-shenzhen.aliyuncs.com/uploadfiles/banner/5f6c56ff1aae4df093039ad65b4a16ea.jpg'></Image>
                       </View>
                       <View className='bar-text'>
-                        
+                        <View className='bar-title'>李先念同款：环视5X李先念同款：环视5X </View>
+                        <View className='bar-price'>
+                          <Text className='bar-num'>￥900.00</Text>
+                          <Text className='bar-c-num'>￥900.00</Text>
+                        </View>
+                      </View>
+                    </View>
+                    <View className='shop-bar-item' >
+                      <View className='bar-img'>
+                        <Image className='img' src='http://mei3mei.oss-cn-shenzhen.aliyuncs.com/uploadfiles/banner/5f6c56ff1aae4df093039ad65b4a16ea.jpg'></Image>
+                      </View>
+                      <View className='bar-text'>
+                        <View className='bar-title'>李先念同款</View>
+                        <View className='bar-price'>
+                          <Text className='bar-num'>￥900.00</Text>
+                          <Text className='bar-c-num'>￥900.00</Text>
+                        </View>
                       </View>
                     </View>
                   </View>

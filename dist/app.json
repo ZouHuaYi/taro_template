@@ -1,0 +1,37 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/detail/detail",
+    "pages/cart/cart",
+    "pages/shopIndex/shopIndex",
+    "pages/order/order",
+    "pages/addArea/addArea",
+    "pages/areaList/areaList",
+    "pages/user/user"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle": "white",
+    "navigationStyle": "custom"
+  },
+  "tabBar": {
+    "color": "#7D7C85",
+    "selectedColor": "#EE6697",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "./assets/tab/shop_default.png",
+        "selectedIconPath": "./assets/tab/shop_active.png",
+        "text": "全部商品"
+      },
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "./assets/tab/shop_default.png",
+        "selectedIconPath": "./assets/tab/shop_active.png",
+        "text": "全部商品"
+      }
+    ]
+  }
+}
