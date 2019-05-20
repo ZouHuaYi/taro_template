@@ -3,10 +3,11 @@ import "@tarojs/async-await"
 import {Provider} from '@tarojs/redux'
 import dva from "./utils/dva"
 import models from "./models"
-import {globalData} from "./utils/common"
+import {globalData,toWork} from "./utils/common"
 
 import './app.less'
 import Index from './pages/index'
+
 
 // 如果需要在 h5 环境中开启 React Devtools
 // 取消以下注释：
@@ -19,7 +20,6 @@ const dvaApp = dva.createApp({
   initialState:{},
   models:models
 })
-
 
 const store = dvaApp.getStore()
 
@@ -44,6 +44,9 @@ class App extends Component {
       'pages/user/user',
       'pages/search/search',
       'pages/login/login',
+      'pages/buyOrder/buyOrder',
+      'pages/test/index',
+      'pages/impower/impower'
     ],
     "window": {
       backgroundTextStyle: 'light',
@@ -60,10 +63,10 @@ class App extends Component {
           "pagePath": "pages/index/index",
           "iconPath": "./assets/tab/shop_default.png",
           "selectedIconPath": "./assets/tab/shop_active.png",
-          "text": "全部商品"
+          "text": "首页"
         },
         {
-          "pagePath": "pages/index/index",
+          "pagePath": "pages/shopIndex/shopIndex",
           "iconPath": "./assets/tab/shop_default.png",
           "selectedIconPath": "./assets/tab/shop_active.png",
           "text": "全部商品"
@@ -77,9 +80,33 @@ class App extends Component {
     globalData.store = store;
     const sys = await Taro.getSystemInfo();
     sys && (globalData.systemInfo = sys);
+
   }
 
-  componentDidShow () {}
+  async componentDidShow () {
+    const [err,result] = await toWork(Taro.getSetting)();
+    if(err||!result.authSetting['scope.userInfo']) return;
+
+    const [userErr,user] = await toWork(Taro.getUserInfo)();
+    if(userErr) return ;
+    globalData.wxUseInfoData = user;
+
+    const [loginErr,login] = await toWork(Taro.login)();
+    if(loginErr) return ;
+
+    store.dispatch({
+      type:'login/wxLoginFn',
+      loginData:{
+        code:login.code,
+        encryptedData:user.encryptedData,
+        iv:user.iv
+      }
+    })
+
+    console.log(user);
+
+
+  }
 
   componentDidHide () {}
 

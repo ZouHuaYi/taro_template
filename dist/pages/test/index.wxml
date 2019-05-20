@@ -1,0 +1,6 @@
+<block>
+    <view>
+        <banner __triggerObserer="{{ _triggerObserer }}"></banner>
+        <on-data __triggerObserer="{{ _triggerObserer }}"></on-data>
+    </view>
+</block>

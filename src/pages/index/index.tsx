@@ -1,116 +1,94 @@
-import Taro, { Component } from '@tarojs/taro'
-import {connect} from '@tarojs/redux'
-import { View, Text ,Navigator,Swiper,SwiperItem,Image,ScrollView} from '@tarojs/components'
-import Layout from '../../components/Layout'
-import Banner from '../../components/Banner'
+
+import Taro, { Component, Config } from '@tarojs/taro';
+import { 
+  View,
+  Text,
+  Swiper,
+  SwiperItem,
+  Image,
+  ScrollView,
+} from '@tarojs/components';
+// import { connect } from '@tarojs/redux'
+import Layout from '../../components/Layout';
 
 import './index.less'
 
 interface IndexProps {
-  dispatch?:any,
-  global:any
+ 
 }
 
-@connect(({global})=>({
-  global
-}))
-export default class Index extends Component<IndexProps> {
+interface IndexState {
+ 
+}
 
+// @connect(({})=>({}))
+class Index extends Component<IndexProps,IndexState > {
+ 
+  constructor(props: IndexProps) {
+    super(props)
+    this.state = {}
+  }
 
-  componentWillMount () { }
+  componentDidMount() {
+    
+  }
 
-  componentDidMount () {}
-
-  componentWillUnmount () { }
-
-  componentDidShow () { }
-
-  componentDidHide () { }
-
-  render () {
-    let navList = [];
-    for (let i=0;i<10;i++){
-      navList.push({
-        'name':"美妆"+i
-      })
-    }
-
+  render() {
     return (
-        <Layout noBack title='美上美-商场' app-page='page-container' layout='page'>
-          <View className='index-box'>
-              <View className='tab-nav-box'>
-                <View className='tab-nav-list'>
-                {
-                  navList.map((item,key)=>{
-                    return <Text className='tab-nav-item' key={key}>{item.name}</Text>
-                  })
-                }
-                </View>
+    <Layout noBack title='美上美-美丽的私人管家' app-page='page-container' layout='page'>
+      <View className='index-box'>
+        <Swiper className='index-banner' indicatorDots>
+          <SwiperItem className='banner-item'>
+            <Image mode='widthFix' className='img' src={'http://mei3mei.oss-cn-shenzhen.aliyuncs.com/uploadfiles/banner/5f6c56ff1aae4df093039ad65b4a16ea.jpg'}></Image>
+          </SwiperItem>
+          <SwiperItem className='banner-item'>
+            <Image mode='widthFix' className='img' src={'http://mei3mei.oss-cn-shenzhen.aliyuncs.com/uploadfiles/banner/5f6c56ff1aae4df093039ad65b4a16ea.jpg'}></Image>
+          </SwiperItem>
+        </Swiper>
+        <View className='index-content'>
+          <View className='index-container'>
+            <View className='pro-title'>热门推荐</View>
+            <View className='cont-image'>
+              <View className='big-img'>
+                <Image mode='widthFix' className='img' src={'http://mei3mei.oss-cn-shenzhen.aliyuncs.com/uploadfiles/banner/5f6c56ff1aae4df093039ad65b4a16ea.jpg'}></Image>
               </View>
-              <View className='index-content'>
-                <Swiper className='index-banner'>
-                  <SwiperItem className='index-banner-item'>
-                    <View className='index-sroll'>
-                      <View className='index-scroll-box'>
-                        <View className='banner'>
-                          <Banner />
-                        </View>
-                        <ScrollView scrollX >
-                          <View className='shopping-hot-scroll'>
-                            <View className='shopping-hot-list'>
-                              <View className='shopping-hot-item'>
-                                <Image className='shopping-img' src='http://mei3mei.oss-cn-shenzhen.aliyuncs.com/uploadfiles/banner/5f6c56ff1aae4df093039ad65b4a16ea.jpg'></Image>
-                              </View>
-                            </View>
-                          </View>
-                      </ScrollView>
-                        <View className='shopping-content'>
-                          <View className='shopping-title'>
-                            <Text className='shoping-title-text'>热门产品</Text>
-                          </View>
-                          <View className='shop-list'>
-                            {
-                              navList.map((item,key)=>{
-                                return(
-                                  <View className='shop-item' key={key}>
-                                    <View className='shop-img'>
-                                      <Image className='img' src='http://mei3mei.oss-cn-shenzhen.aliyuncs.com/uploadfiles/banner/5f6c56ff1aae4df093039ad65b4a16ea.jpg'></Image>
-                                    </View>
-                                    <View className='shop-main'>
-                                      <View className='shop-main-title'>
-                                        滚动条里面的小方块，能向上向下移动（或往左往右移动，取决于是垂直滚动条还是水平滚动条）
-                                      </View>
-                                      <View className='shop-main-sub'>
-                                        或往左往右移动，取决于是垂直滚动条还是水平滚动条能向上向下移动能向上向下移动能向上向下移动
-                                      </View>
-                                      <View className='shop-price'>
-                                        <Text className='true-p'>￥560</Text>
-                                        <Text className='false-p'>￥400</Text>
-                                      </View>
-                                      <View className='shop-buy-number'>
-                                        <Text className='num'>销量 780</Text>
-                                      </View>
-                                    </View>
-                                  </View>
-                                )
-                              })
-                            }
-
-
-                          </View>
-                        </View>
+              <View className='small-img'>
+               <View className='s-item'><Image mode='widthFix' className='img' src={'http://mei3mei.oss-cn-shenzhen.aliyuncs.com/uploadfiles/banner/5f6c56ff1aae4df093039ad65b4a16ea.jpg'}></Image></View>
+               <View className='s-item'><Image mode='widthFix' className='img' src={'http://mei3mei.oss-cn-shenzhen.aliyuncs.com/uploadfiles/banner/5f6c56ff1aae4df093039ad65b4a16ea.jpg'}></Image></View>
+              </View>
+            </View>
+          </View>
+          <View className='index-product'>
+            <View className='pro-title'>热卖产品</View>
+            <View className='product-scroll'>
+              <ScrollView scrollX style={{"width":"100%"}}>
+                <View className='product-list'>
+                  <View className='product-item'>
+                    <Image className='img' src={'http://mei3mei.oss-cn-shenzhen.aliyuncs.com/uploadfiles/banner/5f6c56ff1aae4df093039ad65b4a16ea.jpg'}></Image>
+                    <View className='item-content'>
+                      <View className='item-header'>
+                        产品标题，是什么是什么是什么是什么什么是什么是什么
+                      </View>
+                      <View className='item-price'>
+                        <Text className='txt'>&yen;289</Text>
+                        <Text className='no-txt'>&yen;90</Text>
+                      </View>
+                      <View className='self'>
+                        <Text>销售 280</Text>
                       </View>
                     </View>
-                  </SwiperItem>
-                  <SwiperItem className='index-banner-item'>
-                    <View className='banner'>
-                      <Banner />
-                    </View>
-                  </SwiperItem>
-              </Swiper>
-              </View>
+                  </View>
+                </View>
+              </ScrollView>
+            </View>
           </View>
-        </Layout>
+          <View className='bgk-line'></View>
+        </View>
+      </View>
+    </Layout>
     )
   }
 }
+
+export default Index
+

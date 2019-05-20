@@ -37,7 +37,7 @@ class ShopIndex extends Component<ShopIndexProps,ShopIndexState > {
 
   render() {
     return (
-    <Layout noBack={false} title='MM卖场' app-page='page-container' layout='page'>
+    <Layout noBack title='MM卖场' app-page='page-container' layout='page'>
       <View className='shopIndex-box'>
          <View className='shop-box-left'>
           <View className='shop-nav'>

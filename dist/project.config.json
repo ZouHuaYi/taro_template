@@ -2,7 +2,7 @@
   "miniprogramRoot": "./",
   "projectname": "taro_template",
   "description": "dva模板",
-  "appid": "wxe121a943656499fc",
+  "appid": "wxec3573b60b7769c8",
   "setting": {
     "urlCheck": true,
     "es6": false,
@@ -30,7 +30,7 @@
       "list": []
     },
     "miniprogram": {
-      "current": 6,
+      "current": 11,
       "list": [
         {
           "id": -1,
@@ -78,6 +78,42 @@
           "id": -1,
           "name": "用户中心",
           "pathName": "pages/user/user",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "搜索页面",
+          "pathName": "pages/search/search",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "登录界面",
+          "pathName": "pages/login/login",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "我的订单",
+          "pathName": "pages/buyOrder/buyOrder",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "测试组件页面",
+          "pathName": "pages/test/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "授权",
+          "pathName": "pages/impower/impower",
+          "query": "",
           "scene": null
         }
       ]

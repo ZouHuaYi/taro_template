@@ -9,7 +9,10 @@
     "pages/areaList/areaList",
     "pages/user/user",
     "pages/search/search",
-    "pages/login/login"
+    "pages/login/login",
+    "pages/buyOrder/buyOrder",
+    "pages/test/index",
+    "pages/impower/impower"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -26,10 +29,10 @@
         "pagePath": "pages/index/index",
         "iconPath": "./assets/tab/shop_default.png",
         "selectedIconPath": "./assets/tab/shop_active.png",
-        "text": "全部商品"
+        "text": "首页"
       },
       {
-        "pagePath": "pages/index/index",
+        "pagePath": "pages/shopIndex/shopIndex",
         "iconPath": "./assets/tab/shop_default.png",
         "selectedIconPath": "./assets/tab/shop_active.png",
         "text": "全部商品"

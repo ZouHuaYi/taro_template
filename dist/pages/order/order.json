@@ -1,5 +1,7 @@
 {
   "usingComponents": {
-    "layout": "../../components/Layout/index"
+    "layout": "../../components/Layout/index",
+    "area-cart": "../../components/EreaCart/index",
+    "order-cart": "../../components/OrderCart/index"
   }
 }

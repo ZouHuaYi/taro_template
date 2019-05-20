@@ -1,0 +1,35 @@
+<block>
+    <layout noBack="{{false}}" __triggerObserer="{{ _triggerObserer }}" title="我的订单" app-page="page-container" layout="page">
+        <view class="buyOrder-box">
+            <view class="buy-nav">
+                <view class="nav-item active">全部</view>
+                <view class="buy-item"><text class="nav-item">待发货</text><text class="nav-item">待收货</text><text class="nav-item">待评价</text>
+                </view>
+            </view>
+            <view class="buy-content">
+                <scroll-view scroll-y="{{true}}" style="{{anonymousState__temp}}">
+                    <view class="content-list">
+                        <view class="content-item">
+                            <view class="item-details">
+                                <view class="cont-img">
+                                    <image mode="center" class="img" src="http://mei3mei.oss-cn-shenzhen.aliyuncs.com/uploadfiles/banner/5f6c56ff1aae4df093039ad65b4a16ea.jpg"></image>
+                                </view>
+                                <view class="cont-title">
+                                    <view class="tit-first">产品标题产品名称什么什么的什么什么的产品标题产品名称什么什么的什么什么的</view>
+                                    <view class="tit-type">格式</view>
+                                </view>
+                                <view class="cont-price"><text class="price">￥330</text><text class="num">X1</text><text class="status">交易成功</text>
+                                </view>
+                            </view>
+                            <view class="cont-number">共1件商品 合计：¥330</view>
+                            <view class="cont-active">
+                                <button class="btn" size="mini">申请退款</button>
+                                <button class="btn" size="mini">提醒发货</button>
+                            </view>
+                        </view>
+                    </view>
+                </scroll-view>
+            </view>
+        </view>
+    </layout>
+</block>

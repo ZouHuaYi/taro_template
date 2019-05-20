@@ -3,10 +3,10 @@ import "@tarojs/async-await"
 
 import Tips from './tips'
 
-const Admin_Root = 'https://admin.topmei3mei.com'
-const Test_Root = 'https://test.topmei3mei.com'
-const dev_status = true
-const Root = dev_status?Admin_Root:Test_Root
+const Admin_Root = 'https://admin.topmei3mei.com';
+const Test_Root = 'https://test.topmei3mei.com';
+const dev_status = true;
+const Root = dev_status?Admin_Root:Test_Root;
 
 interface ApiOptions {
   data:any,

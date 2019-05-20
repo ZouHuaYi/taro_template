@@ -1,0 +1,13 @@
+<block>
+    <view class="OrderCart-box">
+        <view class="order-title"><text class="tit-left">未来密码.艺术家面膜同款</text><text class="tit-right">待支付</text>
+        </view>
+        <view class="shop-detail">
+            <view class="shop-img">
+                <image class="img" src="http://mei3mei.oss-cn-shenzhen.aliyuncs.com/uploadfiles/banner/5f6c56ff1aae4df093039ad65b4a16ea.jpg"></image>
+            </view>
+            <view class="shop-right"><text class="shop-title">NASAKLL 洗护套装</text><text class="shop-price">￥559.00</text><text class="shop-number">x1</text>
+            </view>
+        </view>
+    </view>
+</block>

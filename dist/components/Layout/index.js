@@ -60,7 +60,7 @@ var Layout = (_temp2 = _class = function (_BaseComponent) {
           noHeader = _props.noHeader;
 
       var statusBarHeight = _common.globalData.systemInfo ? _common.globalData.systemInfo.statusBarHeight : 0;
-      var titleHeight = statusBarHeight + 40;
+      var titleHeight = statusBarHeight + 44;
       var barHeight = statusBarHeight;
       var anonymousState__temp = noHeader ? (0, _index.internal_inline_style)({ "top": barHeight + 'px' }) : null;
       var anonymousState__temp2 = (0, _index.internal_inline_style)({ 'height': titleHeight + 'px' });

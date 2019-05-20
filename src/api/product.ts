@@ -1,7 +1,6 @@
 import request from '../utils/request';
 import {InterProductDetail} from "./ApiInterface";
 
-
 export function productDetail(params:InterProductDetail) {  //userId=0&id=3498&type=1, userId 不为空的时候可以购买
   return request({
     url:'/rest/product/detail',

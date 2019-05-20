@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "banner": "../../components/Banner/index",
+    "on-data": "../../components/OnData/index"
+  }
+}

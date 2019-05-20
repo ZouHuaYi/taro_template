@@ -21,7 +21,7 @@ class Layout extends Component<LayoutProps>{
   render(){
     const {title,isHome,noBack,noHeader} = this.props;
     const statusBarHeight = globalData.systemInfo?globalData.systemInfo.statusBarHeight:0;
-    const titleHeight = statusBarHeight+40;
+    const titleHeight = statusBarHeight+44;
     const barHeight = statusBarHeight;
 
 

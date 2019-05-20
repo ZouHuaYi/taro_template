@@ -17,7 +17,7 @@
     "dev:h5": "npm run build:h5 -- --watch",
     "dev:rn": "npm run build:rn -- --watch",
     "tep": "node scripts/template",
-    "com": "node scripts/component"
+    "com": "node scripts/components"
   },
   "author": "",
   "license": "MIT",

@@ -4,6 +4,8 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _index = require("./npm/@tarojs/taro-weapp/index.js");
@@ -62,7 +64,7 @@ var _App = function (_BaseComponent) {
     var _this = _possibleConstructorReturn(this, (_App.__proto__ || Object.getPrototypeOf(_App)).apply(this, arguments));
 
     _this.config = {
-      "pages": ['pages/index/index', 'pages/detail/detail', 'pages/cart/cart', 'pages/shopIndex/shopIndex', 'pages/order/order', 'pages/addArea/addArea', 'pages/areaList/areaList', 'pages/user/user', 'pages/search/search', 'pages/login/login'],
+      "pages": ['pages/index/index', 'pages/detail/detail', 'pages/cart/cart', 'pages/shopIndex/shopIndex', 'pages/order/order', 'pages/addArea/addArea', 'pages/areaList/areaList', 'pages/user/user', 'pages/search/search', 'pages/login/login', 'pages/buyOrder/buyOrder', 'pages/test/index', 'pages/impower/impower'],
       "window": {
         backgroundTextStyle: 'light',
         navigationBarBackgroundColor: '#fff',
@@ -77,9 +79,9 @@ var _App = function (_BaseComponent) {
           "pagePath": "pages/index/index",
           "iconPath": "./assets/tab/shop_default.png",
           "selectedIconPath": "./assets/tab/shop_active.png",
-          "text": "全部商品"
+          "text": "首页"
         }, {
-          "pagePath": "pages/index/index",
+          "pagePath": "pages/shopIndex/shopIndex",
           "iconPath": "./assets/tab/shop_default.png",
           "selectedIconPath": "./assets/tab/shop_active.png",
           "text": "全部商品"
@@ -124,7 +126,90 @@ var _App = function (_BaseComponent) {
     }()
   }, {
     key: "componentDidShow",
-    value: function componentDidShow() {}
+    value: function () {
+      var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
+        var _ref3, _ref4, err, result, _ref5, _ref6, userErr, user, _ref7, _ref8, loginErr, login;
+
+        return regeneratorRuntime.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                _context2.next = 2;
+                return (0, _common.toWork)(_index2.default.getSetting)();
+
+              case 2:
+                _ref3 = _context2.sent;
+                _ref4 = _slicedToArray(_ref3, 2);
+                err = _ref4[0];
+                result = _ref4[1];
+
+                if (!(err || !result.authSetting['scope.userInfo'])) {
+                  _context2.next = 8;
+                  break;
+                }
+
+                return _context2.abrupt("return");
+
+              case 8:
+                _context2.next = 10;
+                return (0, _common.toWork)(_index2.default.getUserInfo)();
+
+              case 10:
+                _ref5 = _context2.sent;
+                _ref6 = _slicedToArray(_ref5, 2);
+                userErr = _ref6[0];
+                user = _ref6[1];
+
+                if (!userErr) {
+                  _context2.next = 16;
+                  break;
+                }
+
+                return _context2.abrupt("return");
+
+              case 16:
+                _common.globalData.wxUseInfoData = user;
+                _context2.next = 19;
+                return (0, _common.toWork)(_index2.default.login)();
+
+              case 19:
+                _ref7 = _context2.sent;
+                _ref8 = _slicedToArray(_ref7, 2);
+                loginErr = _ref8[0];
+                login = _ref8[1];
+
+                if (!loginErr) {
+                  _context2.next = 25;
+                  break;
+                }
+
+                return _context2.abrupt("return");
+
+              case 25:
+                store.dispatch({
+                  type: 'login/wxLoginFn',
+                  loginData: {
+                    code: login.code,
+                    encryptedData: user.encryptedData,
+                    iv: user.iv
+                  }
+                });
+                console.log(user);
+
+              case 27:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2, this);
+      }));
+
+      function componentDidShow() {
+        return _ref2.apply(this, arguments);
+      }
+
+      return componentDidShow;
+    }()
   }, {
     key: "componentDidHide",
     value: function componentDidHide() {}

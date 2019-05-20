@@ -1,0 +1,19 @@
+
+.OnData-box {
+  width: 60%;
+  margin: 0 auto;
+}
+.OnData-box .nomore-data {
+  padding-top: 100rpx;
+  width: 100%;
+}
+.OnData-box .nomore-data .img {
+  display: block;
+  width: 100%;
+}
+.OnData-box .nodate-text {
+  display: block;
+  text-align: center;
+  padding-top: 20rpx;
+  color: #999999;
+}

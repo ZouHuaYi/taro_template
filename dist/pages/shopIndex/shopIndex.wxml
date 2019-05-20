@@ -1,5 +1,5 @@
 <block>
-    <layout noBack="{{false}}" __triggerObserer="{{ _triggerObserer }}" title="MM卖场" app-page="page-container" layout="page">
+    <layout noBack="{{true}}" __triggerObserer="{{ _triggerObserer }}" title="MM卖场" app-page="page-container" layout="page">
         <view class="shopIndex-box">
             <view class="shop-box-left">
                 <view class="shop-nav">

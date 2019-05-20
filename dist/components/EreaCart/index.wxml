@@ -1,0 +1,10 @@
+<block>
+    <view class="order-area">
+        <view class="order-area-list">
+            <view class="area-data"><text class="ia iconfont icon-kefu"></text>
+                <view class="area-name">邹华毅</view>
+                <view class="area-detail">广州市番禺区其他市！</view><text class="area-phone">15016447087</text><text class="jt iconfont icon-jiantou4"></text>
+            </view>
+        </view>
+    </view>
+</block>

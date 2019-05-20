@@ -1,55 +1,51 @@
 <block>
-    <layout noBack="{{true}}" __triggerObserer="{{ _triggerObserer }}" title="美上美-商场" app-page="page-container" layout="page">
+    <layout noBack="{{true}}" __triggerObserer="{{ _triggerObserer }}" title="美上美-美丽的私人管家" app-page="page-container" layout="page">
         <view class="index-box">
-            <view class="tab-nav-box">
-                <view class="tab-nav-list"><text class="tab-nav-item" wx:key="key" wx:for="{{navList}}" wx:for-item="item" wx:for-index="key">{{item.name}}</text>
-                </view>
-            </view>
+            <swiper class="index-banner" indicator-dots="{{true}}">
+                <swiper-item class="banner-item">
+                    <image mode="widthFix" class="img" src="http://mei3mei.oss-cn-shenzhen.aliyuncs.com/uploadfiles/banner/5f6c56ff1aae4df093039ad65b4a16ea.jpg"></image>
+                </swiper-item>
+                <swiper-item class="banner-item">
+                    <image mode="widthFix" class="img" src="http://mei3mei.oss-cn-shenzhen.aliyuncs.com/uploadfiles/banner/5f6c56ff1aae4df093039ad65b4a16ea.jpg"></image>
+                </swiper-item>
+            </swiper>
             <view class="index-content">
-                <swiper class="index-banner">
-                    <swiper-item class="index-banner-item">
-                        <view class="index-sroll">
-                            <view class="index-scroll-box">
-                                <view class="banner">
-                                    <banner __triggerObserer="{{ _triggerObserer }}"></banner>
-                                </view>
-                                <scroll-view scroll-x="{{true}}">
-                                    <view class="shopping-hot-scroll">
-                                        <view class="shopping-hot-list">
-                                            <view class="shopping-hot-item">
-                                                <image class="shopping-img" src="http://mei3mei.oss-cn-shenzhen.aliyuncs.com/uploadfiles/banner/5f6c56ff1aae4df093039ad65b4a16ea.jpg"></image>
-                                            </view>
+                <view class="index-container">
+                    <view class="pro-title">热门推荐</view>
+                    <view class="cont-image">
+                        <view class="big-img">
+                            <image mode="widthFix" class="img" src="http://mei3mei.oss-cn-shenzhen.aliyuncs.com/uploadfiles/banner/5f6c56ff1aae4df093039ad65b4a16ea.jpg"></image>
+                        </view>
+                        <view class="small-img">
+                            <view class="s-item">
+                                <image mode="widthFix" class="img" src="http://mei3mei.oss-cn-shenzhen.aliyuncs.com/uploadfiles/banner/5f6c56ff1aae4df093039ad65b4a16ea.jpg"></image>
+                            </view>
+                            <view class="s-item">
+                                <image mode="widthFix" class="img" src="http://mei3mei.oss-cn-shenzhen.aliyuncs.com/uploadfiles/banner/5f6c56ff1aae4df093039ad65b4a16ea.jpg"></image>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+                <view class="index-product">
+                    <view class="pro-title">热卖产品</view>
+                    <view class="product-scroll">
+                        <scroll-view scroll-x="{{true}}" style="{{anonymousState__temp}}">
+                            <view class="product-list">
+                                <view class="product-item">
+                                    <image class="img" src="http://mei3mei.oss-cn-shenzhen.aliyuncs.com/uploadfiles/banner/5f6c56ff1aae4df093039ad65b4a16ea.jpg"></image>
+                                    <view class="item-content">
+                                        <view class="item-header">产品标题，是什么是什么是什么是什么什么是什么是什么</view>
+                                        <view class="item-price"><text class="txt">¥289</text><text class="no-txt">¥90</text>
                                         </view>
-                                    </view>
-                                </scroll-view>
-                                <view class="shopping-content">
-                                    <view class="shopping-title"><text class="shoping-title-text">热门产品</text>
-                                    </view>
-                                    <view class="shop-list">
-                                        <view class="shop-item" wx:key="key" wx:for="{{navList}}" wx:for-item="item" wx:for-index="key">
-                                            <view class="shop-img">
-                                                <image class="img" src="http://mei3mei.oss-cn-shenzhen.aliyuncs.com/uploadfiles/banner/5f6c56ff1aae4df093039ad65b4a16ea.jpg"></image>
-                                            </view>
-                                            <view class="shop-main">
-                                                <view class="shop-main-title">滚动条里面的小方块，能向上向下移动（或往左往右移动，取决于是垂直滚动条还是水平滚动条）</view>
-                                                <view class="shop-main-sub">或往左往右移动，取决于是垂直滚动条还是水平滚动条能向上向下移动能向上向下移动能向上向下移动</view>
-                                                <view class="shop-price"><text class="true-p">￥560</text><text class="false-p">￥400</text>
-                                                </view>
-                                                <view class="shop-buy-number"><text class="num">销量 780</text>
-                                                </view>
-                                            </view>
+                                        <view class="self"><text>销售 280</text>
                                         </view>
                                     </view>
                                 </view>
                             </view>
-                        </view>
-                    </swiper-item>
-                    <swiper-item class="index-banner-item">
-                        <view class="banner">
-                            <banner __triggerObserer="{{ _triggerObserer }}"></banner>
-                        </view>
-                    </swiper-item>
-                </swiper>
+                        </scroll-view>
+                    </view>
+                </view>
+                <view class="bgk-line"></view>
             </view>
         </view>
     </layout>

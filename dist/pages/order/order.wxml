@@ -1,24 +1,9 @@
 <block>
     <layout noBack="{{false}}" __triggerObserer="{{ _triggerObserer }}" title="确认订单" app-page="page-container" layout="page">
         <view class="order-box">
-            <view class="order-area">
-                <view class="order-area-list">
-                    <view class="area-data"><text class="ia iconfont icon-kefu"></text>
-                        <view class="area-name">邹华毅</view>
-                        <view class="area-detail">广州市番禺区其他市！</view><text class="area-phone">15016447087</text><text class="jt iconfont icon-jiantou4"></text>
-                    </view>
-                </view>
-            </view>
+            <area-cart __triggerObserer="{{ _triggerObserer }}"></area-cart>
             <view class="order-content">
-                <view class="order-title"><text class="tit-left">未来密码.艺术家面膜同款</text><text class="tit-right">待支付</text>
-                </view>
-                <view class="shop-detail">
-                    <view class="shop-img">
-                        <image class="img" src="http://mei3mei.oss-cn-shenzhen.aliyuncs.com/uploadfiles/banner/5f6c56ff1aae4df093039ad65b4a16ea.jpg"></image>
-                    </view>
-                    <view class="shop-right"><text class="shop-title">NASAKLL 洗护套装</text><text class="shop-price">￥559.00</text><text class="shop-number">x1</text>
-                    </view>
-                </view>
+                <order-cart __triggerObserer="{{ _triggerObserer }}"></order-cart>
                 <view class="shop-add-number"><text class="number-text">数量</text>
                     <view class="number-add-btn"><text class="num-btn">-</text><text class="num-input">1</text><text class="num-btn">+</text>
                     </view>
