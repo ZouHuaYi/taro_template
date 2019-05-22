@@ -2,6 +2,6 @@
     <view class="OnData-box">
         <view class="nomore-data">
             <image class="img" mode="widthFix" src="{{nomore}}"></image>
-        </view><text class="nodate-text">没有更多内容了</text>
+        </view><text class="nodate-text">{{title ? title : '没有更多内容了'}}</text>
     </view>
 </block>

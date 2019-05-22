@@ -3,7 +3,7 @@ import "@tarojs/async-await"
 import {Provider} from '@tarojs/redux'
 import dva from "./utils/dva"
 import models from "./models"
-import {globalData,toWork} from "./utils/common"
+import {globalData,loginStatus} from "./utils/common"
 
 import './app.less'
 import Index from './pages/index'
@@ -76,35 +76,16 @@ class App extends Component {
   }
 
   async componentDidMount () {
+
+    globalData.store = store;  // 存储全局的store
     // 获取设备信息
-    globalData.store = store;
     const sys = await Taro.getSystemInfo();
     sys && (globalData.systemInfo = sys);
 
   }
 
-  async componentDidShow () {
-    const [err,result] = await toWork(Taro.getSetting)();
-    if(err||!result.authSetting['scope.userInfo']) return;
-
-    const [userErr,user] = await toWork(Taro.getUserInfo)();
-    if(userErr) return ;
-    globalData.wxUseInfoData = user;
-
-    const [loginErr,login] = await toWork(Taro.login)();
-    if(loginErr) return ;
-
-    store.dispatch({
-      type:'login/wxLoginFn',
-      loginData:{
-        code:login.code,
-        encryptedData:user.encryptedData,
-        iv:user.iv
-      }
-    })
-
-    console.log(user);
-
+   componentDidShow () {
+     loginStatus();
 
   }
 

@@ -33,18 +33,14 @@ var OnData = (_temp2 = _class = function (_BaseComponent) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = OnData.__proto__ || Object.getPrototypeOf(OnData)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["nomore"], _this.$$refs = [], _temp), _possibleConstructorReturn(_this, _ret);
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = OnData.__proto__ || Object.getPrototypeOf(OnData)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["nomore", "title"], _this.$$refs = [], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(OnData, [{
     key: "_constructor",
     value: function _constructor(props) {
       _get(OnData.prototype.__proto__ || Object.getPrototypeOf(OnData.prototype), "_constructor", this).call(this, props);
-      this.state = {};
     }
-  }, {
-    key: "componentDidMount",
-    value: function componentDidMount() {}
   }, {
     key: "_createData",
     value: function _createData() {
@@ -52,15 +48,24 @@ var OnData = (_temp2 = _class = function (_BaseComponent) {
       this.__props = arguments[1] || this.props || {};
       var __runloopRef = arguments[2];
       ;
+
+      var title = this.__props.title;
+
       Object.assign(this.__state, {
-        nomore: nomore
+        nomore: nomore,
+        title: title
       });
       return this.__state;
     }
   }]);
 
   return OnData;
-}(_index.Component), _class.properties = {}, _class.$$events = [], _temp2);
+}(_index.Component), _class.properties = {
+  "title": {
+    "type": null,
+    "value": null
+  }
+}, _class.$$events = [], _temp2);
 exports.default = OnData;
 
 Component(require('../../npm/@tarojs/taro-weapp/index.js').default.createComponent(OnData));

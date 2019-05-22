@@ -28,7 +28,7 @@ class User extends Component<UserProps,UserState > {
   }
 
   componentDidMount() {
-    
+
   }
 
   render() {

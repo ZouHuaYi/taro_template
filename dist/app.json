@@ -38,5 +38,6 @@
         "text": "全部商品"
       }
     ]
-  }
+  },
+  "sitemapLocation": "sitemap.json"
 }

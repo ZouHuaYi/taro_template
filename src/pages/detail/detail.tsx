@@ -28,7 +28,8 @@ class Detail extends Component<DetailProps,DetailState > {
   }
 
   componentDidMount() {
-    
+    console.log(this.$router.params.id);
+
   }
 
   render() {

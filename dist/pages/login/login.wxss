@@ -39,6 +39,9 @@
   line-height: 1.4rem;
   border-radius: 10rpx;
 }
+.login-container .form-ground .vcode.off {
+  opacity: 0.5;
+}
 .form-tip {
   width: 100%;
   -webkit-box-sizing: border-box;

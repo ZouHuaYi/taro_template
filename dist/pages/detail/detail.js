@@ -46,7 +46,9 @@ var Detail = (_temp2 = _class = function (_BaseComponent) {
     }
   }, {
     key: "componentDidMount",
-    value: function componentDidMount() {}
+    value: function componentDidMount() {
+      console.log(this.$router.params.id);
+    }
   }, {
     key: "_createData",
     value: function _createData() {

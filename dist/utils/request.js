@@ -11,6 +11,8 @@ var _index2 = _interopRequireDefault(_index);
 
 require("../npm/@tarojs/async-await/index.js");
 
+var _common = require("./common.js");
+
 var _tips = require("./tips.js");
 
 var _tips2 = _interopRequireDefault(_tips);
@@ -24,17 +26,25 @@ var Root = Admin_Root;
 function request(options) {
   return new Promise(function (resole, reject) {
     var data = options.data;
+    console.log(options, 'x');
     if (data && Object.keys(data).length > 0) {
+      console.log(data, 't');
       var keys = Object.keys(data);
       keys = keys.filter(function (name) {
         return data[name] !== undefined;
       });
-      data = encodeURI(keys.map(function (name) {
+      data = keys.map(function (name) {
         return name + "=" + data[name];
-      }).join("&"));
+      }).join("&");
     } else {
       data = {};
     }
+    if (_common.globalData.userInfo) {
+      data = encodeURI(data + "&token=" + _common.globalData.userInfo.token);
+    } else {
+      data = encodeURI(data);
+    }
+    console.log(_common.globalData);
     _index2.default.request({
       url: Root + options.url,
       data: data,

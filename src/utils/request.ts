@@ -1,6 +1,6 @@
 import Taro from '@tarojs/taro'
 import "@tarojs/async-await"
-
+import {globalData} from "./common";
 import Tips from './tips'
 
 const Admin_Root = 'https://admin.topmei3mei.com';
@@ -16,13 +16,22 @@ interface ApiOptions {
 export default function request(options:ApiOptions) {
   return new Promise((resole,reject)=>{
     let data = options.data;
+    console.log(options,'x')
     if(data && Object.keys(data).length>0){
+      console.log(data,'t')
       let keys =  Object.keys(data);
       keys = keys.filter(name=> data[name]!==undefined);
-      data = encodeURI(keys.map(name =>`${name}=${data[name]}`).join("&"));
+      data = keys.map(name =>`${name}=${data[name]}`).join("&");
     }else{
       data = {}
     }
+    if(globalData.userInfo){
+      data = encodeURI(`${data}&token=${globalData.userInfo.token}`);
+    }else {
+      data = encodeURI(data);
+    }
+    console.log(globalData);
+
     Taro.request({
       url: Root+options.url,
       data:data,

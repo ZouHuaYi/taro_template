@@ -11,32 +11,20 @@ const nomore = require('../../assets/nomore.png');
 
 
 interface OnDataProps {
- 
-}
-
-interface OnDataState {
- 
+ title:string
 }
 
 
-class OnData extends Component<OnDataProps,OnDataState > {
- 
-  constructor(props: OnDataProps) {
-    super(props)
-    this.state = {}
-  }
-
-  componentDidMount() {
-    
-  }
+class OnData extends Component<OnDataProps > {
 
   render() {
+    const {title} = this.props;
     return (
       <View className='OnData-box'>
         <View className='nomore-data'>
           <Image className='img' mode='widthFix' src={nomore}></Image>
         </View>
-        <Text className='nodate-text'>没有更多内容了</Text>
+        <Text className='nodate-text'>{title?title:'没有更多内容了'}</Text>
       </View>
     )
   }

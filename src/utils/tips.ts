@@ -1,7 +1,7 @@
 import Taro from '@tarojs/taro'
 
 
-export default class Tips {
+export  class Tips {
   static isLoading = false
 
   /**
@@ -18,7 +18,7 @@ export default class Tips {
     if (onHide) {
       setTimeout(() => {
         onHide();
-      }, 500);
+      }, 1500);
     }
   }
   /**
@@ -45,7 +45,7 @@ export default class Tips {
   static loaded() {
     let duration = 0
     if (this.isLoading) {
-      this.isLoading = false
+      this.isLoading = false;
       if (Taro.hideLoading) {
         Taro.hideLoading()
       } else {

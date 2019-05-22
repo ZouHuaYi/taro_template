@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = undefined;
+exports.Tips = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -15,7 +15,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var Tips = function () {
+var Tips = exports.Tips = function () {
   function Tips() {
     _classCallCheck(this, Tips);
   }
@@ -37,7 +37,7 @@ var Tips = function () {
       if (onHide) {
         setTimeout(function () {
           onHide();
-        }, 500);
+        }, 1500);
       }
     }
     /**
@@ -110,7 +110,5 @@ var Tips = function () {
 
   return Tips;
 }();
-
-exports.default = Tips;
 
 Tips.isLoading = false;

@@ -1,40 +1,40 @@
 <block>
-    <layout noBack="{{false}}" __triggerObserer="{{ _triggerObserer }}" title="登录/注册" app-page="page-container" layout="page">
+    <layout noBack="{{passwordStatus}}" __triggerObserer="{{ _triggerObserer }}" title="{{passwordStatus ? '完善密码' : '登录/注册'}}" app-page="page-container" layout="page">
         <block>
             <block wx:if="{{passwordStatus}}">
                 <view class="add-password">
-                    <form>
+                    <form bindsubmit="putPassword">
                         <view class="login-container">
                             <view class="form-ground">
-                                <input class="input" type="password" placeholder="请输入密码" />
+                                <input class="input" type="password" placeholder="请输入密码" name="password" />
                             </view>
                             <view class="form-ground">
-                                <input class="input" type="password" placeholder="再次确认密码" />
+                                <input class="input" type="password" placeholder="再次确认密码" name="repassword" />
                             </view>
                         </view>
                         <view class="form-tip"><text class="tip">温馨提示：完善密码以便下次使用</text>
                         </view>
                         <view class="form-btn">
-                            <button class="btn" type="primary">完善密码</button>
+                            <button class="btn" form-type="submit" type="primary">完善密码</button>
                         </view>
                     </form>
                 </view>
             </block>
             <block wx:else>
                 <view class="login-box">
-                    <form>
+                    <form bindsubmit="formSubmit">
                         <view class="login-container">
                             <view class="form-ground">
-                                <input class="input" type="text" placeholder="手机号" /><text class="vcode">发送验证码</text>
+                                <input class="input" type="number" name="phone" placeholder="手机号" bindinput="phoneChange" /><text bindtap="sendCode" class="{{'vcode ' + (disabled ? '' : 'off')}}">{{codeText}}</text>
                             </view>
                             <view class="form-ground">
-                                <input class="input" type="text" placeholder="验证码" />
+                                <input class="input" type="number" name="code" placeholder="验证码" />
                             </view>
                         </view>
                         <view class="form-tip"><text class="tip">温馨提示：未注册美上美App账号的手机号，登录时将会自动注册，且代表您已同意</text><text class="vip">《用户注册协议》</text>
                         </view>
                         <view class="form-btn">
-                            <button class="btn" type="primary">登录</button>
+                            <button class="btn" form-type="submit" type="primary">登录</button>
                         </view>
                     </form>
                 </view>
