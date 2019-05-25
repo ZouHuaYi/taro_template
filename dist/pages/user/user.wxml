@@ -15,9 +15,9 @@
                 <view class="order-title"><text class="order-tit">我的订单</text><text class="order-all">查看全部></text>
                 </view>
                 <view class="order-list">
-                    <view class="order-item">
+                    <navigator class="order-item" open-type="navigate" url="/pages/buyOrder/buyOrder">
                         <image class="order-icon" src="http://mei3mei.oss-cn-shenzhen.aliyuncs.com/uploadfiles/banner/5f6c56ff1aae4df093039ad65b4a16ea.jpg"></image><text class="order-name">待付款</text>
-                    </view>
+                    </navigator>
                     <view class="order-item">
                         <image class="order-icon" src="http://mei3mei.oss-cn-shenzhen.aliyuncs.com/uploadfiles/banner/5f6c56ff1aae4df093039ad65b4a16ea.jpg"></image><text class="order-name">待发货</text>
                     </view>

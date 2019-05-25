@@ -83,6 +83,16 @@ var _App = function (_BaseComponent) {
           "iconPath": "./assets/tab/shop_default.png",
           "selectedIconPath": "./assets/tab/shop_active.png",
           "text": "全部商品"
+        }, {
+          "pagePath": "pages/cart/cart",
+          "iconPath": "./assets/tab/shop_default.png",
+          "selectedIconPath": "./assets/tab/shop_active.png",
+          "text": "购物车"
+        }, {
+          "pagePath": "pages/user/user",
+          "iconPath": "./assets/tab/shop_default.png",
+          "selectedIconPath": "./assets/tab/shop_active.png",
+          "text": "个人中心"
         }]
       }
     };

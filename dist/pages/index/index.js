@@ -46,7 +46,9 @@ var Index = (_temp2 = _class = function (_BaseComponent) {
     }
   }, {
     key: "componentDidMount",
-    value: function componentDidMount() {}
+    value: function componentDidMount() {
+      console.log('0-0-0-0');
+    }
   }, {
     key: "_createData",
     value: function _createData() {

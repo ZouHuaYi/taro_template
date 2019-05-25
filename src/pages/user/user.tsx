@@ -4,7 +4,8 @@ import {
   View,
   Text,
   Button,
-  Image
+  Image,
+  Navigator,
 } from '@tarojs/components';
 // import { connect } from '@tarojs/redux'
 import Layout from '../../components/Layout';
@@ -51,10 +52,10 @@ class User extends Component<UserProps,UserState > {
             <Text className='order-all'>查看全部&gt;</Text>
           </View>
           <View className='order-list'>
-            <View className='order-item'>
+            <Navigator className='order-item' openType='navigate' url='/pages/buyOrder/buyOrder'>
               <Image className='order-icon' src={'http://mei3mei.oss-cn-shenzhen.aliyuncs.com/uploadfiles/banner/5f6c56ff1aae4df093039ad65b4a16ea.jpg'}></Image>
               <Text className='order-name'>待付款</Text>
-            </View>
+            </Navigator>
             <View className='order-item'>
               <Image className='order-icon' src={'http://mei3mei.oss-cn-shenzhen.aliyuncs.com/uploadfiles/banner/5f6c56ff1aae4df093039ad65b4a16ea.jpg'}></Image>
               <Text className='order-name'>待发货</Text>

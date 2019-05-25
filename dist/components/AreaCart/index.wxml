@@ -1,0 +1,20 @@
+<block>
+    <navigator class="order-area" open-type="navigate" url="/pages/areaList/areaList">
+        <view class="order-area-list">
+            <block>
+                <block wx:if="{{areaData}}">
+                    <view class="area-data"><text class="ia iconfont icon-kefu"></text>
+                        <view class="area-name">{{areaData.receiveName}}</view>
+                        <view class="area-detail">{{areaData.area}}{{areaData.address}}</view><text class="area-phone">{{areaData.receivePhone}}</text><text class="jt iconfont icon-jiantou4"></text>
+                    </view>
+                </block>
+                <block wx:else>
+                    <view class="area-data"><text class="ia iconfont icon-kefu"></text>
+                        <view class="area-name">收货地址</view>
+                        <view class="area-detail">请填写你的收货地址</view><text class="jt iconfont icon-jiantou4"></text>
+                    </view>
+                </block>
+            </block>
+        </view>
+    </navigator>
+</block>

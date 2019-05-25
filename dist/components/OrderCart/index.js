@@ -32,7 +32,7 @@ var OrderCart = (_temp2 = _class = function (_BaseComponent) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = OrderCart.__proto__ || Object.getPrototypeOf(OrderCart)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = [], _this.$$refs = [], _temp), _possibleConstructorReturn(_this, _ret);
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = OrderCart.__proto__ || Object.getPrototypeOf(OrderCart)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["detailData", "orderNumber"], _this.$$refs = [], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(OrderCart, [{
@@ -51,13 +51,30 @@ var OrderCart = (_temp2 = _class = function (_BaseComponent) {
       this.__props = arguments[1] || this.props || {};
       var __runloopRef = arguments[2];
       ;
-      Object.assign(this.__state, {});
+
+      var _props = this.__props,
+          detailData = _props.detailData,
+          orderNumber = _props.orderNumber;
+
+      Object.assign(this.__state, {
+        detailData: detailData,
+        orderNumber: orderNumber
+      });
       return this.__state;
     }
   }]);
 
   return OrderCart;
-}(_index.Component), _class.properties = {}, _class.$$events = [], _temp2);
+}(_index.Component), _class.properties = {
+  "detailData": {
+    "type": null,
+    "value": null
+  },
+  "orderNumber": {
+    "type": null,
+    "value": null
+  }
+}, _class.$$events = [], _temp2);
 exports.default = OrderCart;
 
 Component(require('../../npm/@tarojs/taro-weapp/index.js').default.createComponent(OrderCart));

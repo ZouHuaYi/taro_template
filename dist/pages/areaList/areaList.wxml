@@ -2,48 +2,32 @@
     <layout noBack="{{false}}" __triggerObserer="{{ _triggerObserer }}" title="地址管理" app-page="page-container" layout="page">
         <view class="areaList-box">
             <view class="area-list">
-                <view class="area-item">
-                    <view class="area-text">
-                        <view class="text-txt"><text class="area-name">邹华毅</text><text class="area-name">15016447087</text>
+                <block wx:if="{{areaListData}}">
+                    <view class="area-item" wx:key="id" wx:for="{{areaListData}}" wx:for-item="item" wx:for-index="key">
+                        <view class="area-text" bindtap="selectAreaList" data-e-tap-so="this" data-e-tap-a-a="{{key}}">
+                            <view class="text-txt"><text class="area-name">{{item.receiveName}}</text><text class="area-name">{{item.receivePhone}}</text>
+                            </view>
+                            <view class="area-detail">{{item.area}}{{item.address}}</view>
                         </view>
-                        <view class="area-detail">广州市清河街道</view>
-                    </view>
-                    <view class="area-action">
-                        <view class="def"><text class="circle"></text><text class="default-txt">默认地址</text>
-                        </view>
-                        <view class="action"><text class="edit">编辑</text>|<text class="delete">删除</text>
-                        </view>
-                    </view>
-                </view>
-                <view class="area-item">
-                    <view class="area-text">
-                        <view class="text-txt"><text class="area-name">邹华毅</text><text class="area-name">15016447087</text>
-                        </view>
-                        <view class="area-detail">广州市清河街道</view>
-                    </view>
-                    <view class="area-action">
-                        <view class="def"><text class="circle"></text><text class="default-txt">默认地址</text>
-                        </view>
-                        <view class="action"><text class="edit">编辑</text>|<text class="delete">删除</text>
+                        <view class="area-action">
+                            <view class="def">
+                                <block>
+                                    <block wx:if="{{defaultAreaId === item.id}}">
+                                        <icon class="cir-icon" type="success" size="20"></icon>
+                                    </block>
+                                    <block wx:else><text bindtap="setDefaultArea" class="circle" data-e-tap-so="this" data-e-tap-a-a="{{item.id}}"></text>
+                                    </block>
+                                </block><text bindtap="setDefaultArea" class="default-txt" data-e-tap-so="this" data-e-tap-a-a="{{item.id}}">默认地址</text>
+                            </view>
+                            <view class="action">
+                                <navigator open-type="navigate" url="{{'/pages/addArea/addArea?id=' + item.id}}" class="edit">编辑</navigator>|<text class="delete" bindtap="deleteAreaData" data-e-tap-so="this" data-e-tap-a-a="{{item.id}}">删除</text>
+                            </view>
                         </view>
                     </view>
-                </view>
-                <view class="area-item">
-                    <view class="area-text">
-                        <view class="text-txt"><text class="area-name">邹华毅</text><text class="area-name">15016447087</text>
-                        </view>
-                        <view class="area-detail">广州市清河街道</view>
-                    </view>
-                    <view class="area-action">
-                        <view class="def"><text class="circle"></text><text class="default-txt">默认地址</text>
-                        </view>
-                        <view class="action"><text class="edit">编辑</text>|<text class="delete">删除</text>
-                        </view>
-                    </view>
-                </view>
+                </block>
             </view>
             <view class="add-new-area">
-                <button class="add-btn" type="primary">添加新地址</button>
+                <navigator class="add-btn" open-type="navigate" url="/pages/addArea/addArea">添加新地址</navigator>
             </view>
         </view>
     </layout>

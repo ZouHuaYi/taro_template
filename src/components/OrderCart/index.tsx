@@ -1,5 +1,5 @@
 
-import Taro, { Component, Config } from '@tarojs/taro';
+import Taro, { Component } from '@tarojs/taro';
 import { 
   View,
   Text, 
@@ -8,7 +8,7 @@ import {
 import './index.less'
 
 interface OrderCartProps {
- 
+  detailData:any
 }
 
 interface OrderCartState {
@@ -28,26 +28,33 @@ class OrderCart extends Component<OrderCartProps,OrderCartState > {
   }
 
   render() {
+    const {detailData,orderNumber} = this.props;
     return (
       <View className='OrderCart-box'>
-        <View className='order-title'>
-          <Text className='tit-left'>未来密码.艺术家面膜同款</Text>
-          <Text className='tit-right'>待支付</Text>
-        </View>
+        {
+          detailData.discount_price?(
+            <View className='order-title'>
+              <Text className='tit-left'>{detailData.hospital.name}</Text>
+              <Text className='tit-right'>待支付</Text>
+            </View>
+          ):''
+        }
+
         <View className='shop-detail'>
           <View className='shop-img'>
-            <Image className='img' src='http://mei3mei.oss-cn-shenzhen.aliyuncs.com/uploadfiles/banner/5f6c56ff1aae4df093039ad65b4a16ea.jpg'></Image>
+            <Image className='img' src={detailData.thumbnail} ></Image>
           </View>
           <View className='shop-right'>
-            <Text className='shop-title'>NASAKLL 洗护套装</Text>
-            <Text className='shop-price'>￥559.00</Text>
-            <Text className='shop-number'>x1</Text>
+            <Text className='shop-title'>{detailData.title}</Text>
+            <Text className='shop-price'>￥{detailData.discount_price||detailData.discountPrice}</Text>
+            <Text className='shop-number'>x{orderNumber}</Text>
           </View>
         </View>
       </View>
     )
   }
 }
+
 
 export default OrderCart
 

@@ -19,6 +19,9 @@
   font-size: 28rpx;
   margin-bottom: 30rpx;
 }
+.area-item .area-text :active {
+  background: #EFEFEF;
+}
 .area-item .area-text .text-txt .area-name {
   display: inline-block;
 }
@@ -46,6 +49,11 @@
   vertical-align: middle;
   margin-right: 20rpx;
 }
+.area-item .area-action .def .cir-icon {
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 20rpx;
+}
 .area-item .area-action .action {
   float: right;
 }
@@ -56,4 +64,13 @@
 }
 .area-item .area-action .action .delete {
   color: #FF0C0C;
+}
+.add-new-area .add-btn {
+  display: block;
+  height: 90rpx;
+  text-align: center;
+  border-radius: 12rpx;
+  color: #FFFFFF;
+  line-height: 90rpx;
+  font-size: 32rpx;
 }

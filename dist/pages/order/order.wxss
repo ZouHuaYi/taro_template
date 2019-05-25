@@ -8,6 +8,11 @@
           box-sizing: border-box;
   padding: 0 30rpx;
 }
+.line-box {
+  width: 100%;
+  height: 20rpx;
+  background: #EFEFEF;
+}
 .shop-add-number {
   width: 100%;
   overflow: hidden;

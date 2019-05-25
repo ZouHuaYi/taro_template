@@ -1,13 +1,27 @@
 <block>
-    <layout noBack="{{false}}" __triggerObserer="{{ _triggerObserer }}" title="确认订单" app-page="page-container" layout="page">
+    <layout noBack="{{false}}" __triggerObserer="{{ _triggerObserer }}" title="立即购买" app-page="page-container" layout="page">
         <view class="order-box">
-            <area-cart __triggerObserer="{{ _triggerObserer }}"></area-cart>
+            <area-cart areaData="{{selectAreaData}}" __triggerObserer="{{ _triggerObserer }}"></area-cart>
+            <view class="line-box"></view>
             <view class="order-content">
-                <order-cart __triggerObserer="{{ _triggerObserer }}"></order-cart>
-                <view class="shop-add-number"><text class="number-text">数量</text>
-                    <view class="number-add-btn"><text class="num-btn">-</text><text class="num-input">1</text><text class="num-btn">+</text>
-                    </view>
-                </view>
+                <block>
+                    <block wx:if="{{hasIdState}}">
+                        <view>
+                            <order-cart detailData="{{detailData}}" __triggerObserer="{{ _triggerObserer }}" orderNumber="{{orderNumber}}"></order-cart>
+                            <view class="shop-add-number"><text class="number-text">数量</text>
+                                <view class="number-add-btn"><text class="num-btn" bindtap="addOrMinus" data-e-tap-so="this" data-e-tap-a-a="minus">-</text><text class="num-input">{{orderNumber}}</text><text class="num-btn" bindtap="addOrMinus" data-e-tap-so="this" data-e-tap-a-a="add">+</text>
+                                </view>
+                            </view>
+                        </view>
+                    </block>
+                    <block wx:else>
+                        <block wx:if="{{cartAccountList && cartAccountList.length > 0}}">
+                            <view wx:for="{{cartAccountList}}" wx:for-item="item" wx:for-index="key">
+                                <order-cart detailData="{{item}}" __triggerObserer="{{ _triggerObserer }}" orderNumber="{{item.number}}"></order-cart>
+                            </view>
+                        </block>
+                    </block>
+                </block>
                 <view class="send-type"><text class="send-name">支付配送</text><text class="type">快递免邮</text>
                 </view>
                 <view class="user-buy"><text class="user-say">买家留言</text>
@@ -16,9 +30,9 @@
             </view>
         </view>
         <view class="btn-floor">
-            <view class="floor-text"><text class="s-pay-monney">支付金额</text><text class="s-price">￥900.00</text>
+            <view class="floor-text"><text class="s-pay-monney">支付金额</text><text class="s-price">￥{{payMonney}}</text>
             </view>
-            <view class="post-btn">提交订单</view>
+            <view class="post-btn">立即购买</view>
         </view>
     </layout>
 </block>

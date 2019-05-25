@@ -1,35 +1,46 @@
 <block>
-    <layout noBack="{{false}}" __triggerObserer="{{ _triggerObserer }}" title="购物车" app-page="page-container" layout="page">
+    <layout noBack="{{true}}" __triggerObserer="{{ _triggerObserer }}" title="购物车" app-page="page-container" layout="page">
         <view class="cart-box">
             <view class="cart-list">
-                <view class="cart-item"><text class="circle"></text>
-                    <view class="shop-img">
-                        <image class="img" src="http://mei3mei.oss-cn-shenzhen.aliyuncs.com/uploadfiles/banner/5f6c56ff1aae4df093039ad65b4a16ea.jpg"></image>
+                <view wx:key="id" class="{{'' + (cartStatusObj['sl_' + key] === true ? 'on' : 'off')}}" wx:for="{{cartShopListData}}" wx:for-item="item" wx:for-index="key">
+                    <view class="cart-item">
+                        <block>
+                            <block wx:if="{{cartStatusObj['sl_' + key] === true}}">
+                                <icon class="circle-icon" bindtap="selectOrder" type="success" size="20" data-e-tap-so="this" data-e-tap-a-a="{{key}}"></icon>
+                            </block>
+                            <block wx:else><text class="circle" bindtap="selectOrder" data-e-tap-so="this" data-e-tap-a-a="{{key}}"></text>
+                            </block>
+                        </block>
+                        <navigator open-type="navigate" url="{{'/pages/detail/detail?id=' + item.productId}}" class="shop-img">
+                            <image class="img" src="{{item.thumbnail}}"></image>
+                        </navigator>
+                        <view class="shop-text">
+                            <view class="shop-tit">{{item.title}}</view><text class="shop-type">{{item.specificationGroup.specification}}</text>
+                            <view class="shop-price">{{item.discountPrice}}</view>
+                        </view>
+                        <view class="delete icon iconfont icon-shanchu" bindtap="deleteCartFun" data-e-tap-so="this" data-e-tap-a-a="{{item.shoppingCartId}}"></view>
+                        <view class="add-number"><text class="btn" data-status="{{false}}" data-key="{{key}}" bindtap="addOrSubtractNumber">-</text><text class="btn-center">{{item.number}}</text><text class="btn" data-status="{{true}}" data-key="{{key}}" bindtap="addOrSubtractNumber">+</text>
+                        </view>
                     </view>
-                    <view class="shop-text">
-                        <view class="shop-tit">低价代购 Refa Carat 低价代购 低价代购</view><text class="shop-type">银色</text>
-                        <view class="shop-price">￥1356.00</view>
-                    </view><text class="delete icon iconfont icon-shanchu"></text>
-                    <view class="add-number"><text class="btn">-</text><text class="btn-center">13</text><text class="btn">+</text>
-                    </view>
-                </view><text class="center-line"></text>
-                <view class="cart-item"><text class="circle"></text>
-                    <view class="shop-img">
-                        <image class="img" src="http://mei3mei.oss-cn-shenzhen.aliyuncs.com/uploadfiles/banner/5f6c56ff1aae4df093039ad65b4a16ea.jpg"></image>
-                    </view>
-                    <view class="shop-text">
-                        <view class="shop-tit">低价代购 Refa Carat 低价代购 低价代购</view><text class="shop-type">银色</text>
-                        <view class="shop-price">￥1356.00</view>
-                    </view><text class="delete icon iconfont icon-shanchu"></text>
-                    <view class="add-number"><text class="btn">-</text><text class="btn-center">13</text><text class="btn">+</text>
-                    </view>
+                    <view class="center-line"></view>
                 </view>
             </view>
+            <block wx:if="{{cartShopListData.length === 0}}">
+                <on-data __triggerObserer="{{ _triggerObserer }}"></on-data>
+            </block>
         </view>
         <view class="order-all">
-            <view class="order-select"><text class="circle"></text><text class="">全选</text>
+            <view class="order-select" bindtap="selectAllList">
+                <block>
+                    <block wx:if="{{allSelectStatus}}">
+                        <icon class="circle-icon" type="success" size="20"></icon>
+                    </block>
+                    <block wx:else><text class="circle"></text>
+                    </block>
+                </block><text class="">全选</text>
             </view>
-            <view class="order-right"><text class="order-price">合计:0.00元</text><text class="order-btn">去结算</text>
+            <view class="order-right"><text class="order-price">合计:{{allMonney}}元</text>
+                <navigator open-type="navigate" url="/pages/order/order?type=cart" class="order-btn">去结算</navigator>
             </view>
         </view>
     </layout>

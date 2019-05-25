@@ -16,6 +16,12 @@
   top: 50%;
   transform: translateY(-50%);
 }
+.circle-icon{
+  position: absolute;
+  left: 0px;
+  top: 50%;
+  transform: translateY(-50%);
+}
 .cart-item{
   width: 100%;
   box-sizing: border-box;
@@ -31,7 +37,7 @@
   .shop-img{
     width: 150px;
     height: 150px;
-    padding-left: 60px;
+    margin-left: 60px;
     .img{
       display: block;
       width: 100%;
@@ -107,9 +113,11 @@
     position: relative;
     padding-left:  80px;
     float: left;
-    .circle{
+    .circle,.circle-icon{
       left: 30px;
+      line-height: 0;
     }
+
   }
   .order-right{
     float: right;

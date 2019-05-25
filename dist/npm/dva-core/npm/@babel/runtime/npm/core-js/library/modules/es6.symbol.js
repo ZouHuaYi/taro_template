@@ -18,12 +18,14 @@ var enumKeys = require("./_enum-keys.js");
 var isArray = require("./_is-array.js");
 var anObject = require("./_an-object.js");
 var isObject = require("./_is-object.js");
+var toObject = require("./_to-object.js");
 var toIObject = require("./_to-iobject.js");
 var toPrimitive = require("./_to-primitive.js");
 var createDesc = require("./_property-desc.js");
 var _create = require("./_object-create.js");
 var gOPNExt = require("./_object-gopn-ext.js");
 var $GOPD = require("./_object-gopd.js");
+var $GOPS = require("./_object-gops.js");
 var $DP = require("./_object-dp.js");
 var $keys = require("./_object-keys.js");
 var gOPD = $GOPD.f;
@@ -40,7 +42,7 @@ var SymbolRegistry = shared('symbol-registry');
 var AllSymbols = shared('symbols');
 var OPSymbols = shared('op-symbols');
 var ObjectProto = Object[PROTOTYPE];
-var USE_NATIVE = typeof $Symbol == 'function';
+var USE_NATIVE = typeof $Symbol == 'function' && !!$GOPS.f;
 var QObject = global.QObject;
 // Don't use setters in Qt Script, https://github.com/zloirock/core-js/issues/173
 var setter = !QObject || !QObject[PROTOTYPE] || !QObject[PROTOTYPE].findChild;
@@ -152,7 +154,7 @@ if (!USE_NATIVE) {
   $DP.f = $defineProperty;
   require("./_object-gopn.js").f = gOPNExt.f = $getOwnPropertyNames;
   require("./_object-pie.js").f = $propertyIsEnumerable;
-  require("./_object-gops.js").f = $getOwnPropertySymbols;
+  $GOPS.f = $getOwnPropertySymbols;
 
   if (DESCRIPTORS && !require("./_library.js")) {
     redefine(ObjectProto, 'propertyIsEnumerable', $propertyIsEnumerable, true);
@@ -202,6 +204,18 @@ $export($export.S + $export.F * !USE_NATIVE, 'Object', {
   getOwnPropertyNames: $getOwnPropertyNames,
   // 19.1.2.8 Object.getOwnPropertySymbols(O)
   getOwnPropertySymbols: $getOwnPropertySymbols
+});
+
+// Chrome 38 and 39 `Object.getOwnPropertySymbols` fails on primitives
+// https://bugs.chromium.org/p/v8/issues/detail?id=3443
+var FAILS_ON_PRIMITIVES = $fails(function () {
+  $GOPS.f(1);
+});
+
+$export($export.S + $export.F * FAILS_ON_PRIMITIVES, 'Object', {
+  getOwnPropertySymbols: function getOwnPropertySymbols(it) {
+    return $GOPS.f(toObject(it));
+  }
 });
 
 // 24.3.2 JSON.stringify(value [, replacer [, space]])

@@ -20,8 +20,8 @@ interface LoginProps {
 }
 
 interface LoginState {
-  passwordStatus:boolean,
-  phone:string
+  passwordStatus?:boolean,
+  phone?:string
 }
 
 @connect(({login})=>({login}),)

@@ -15,8 +15,6 @@ var _common = require("./common.js");
 
 var _tips = require("./tips.js");
 
-var _tips2 = _interopRequireDefault(_tips);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var Admin_Root = 'https://admin.topmei3mei.com';
@@ -26,9 +24,7 @@ var Root = Admin_Root;
 function request(options) {
   return new Promise(function (resole, reject) {
     var data = options.data;
-    console.log(options, 'x');
     if (data && Object.keys(data).length > 0) {
-      console.log(data, 't');
       var keys = Object.keys(data);
       keys = keys.filter(function (name) {
         return data[name] !== undefined;
@@ -44,7 +40,6 @@ function request(options) {
     } else {
       data = encodeURI(data);
     }
-    console.log(_common.globalData);
     _index2.default.request({
       url: Root + options.url,
       data: data,
@@ -56,16 +51,19 @@ function request(options) {
       success: function success(res) {
         try {
           var dat = JSON.parse(res.data);
-          if (!(dat.messageCode == 904 || dat.messageCode == 906 || dat.messageCode == 903)) {
+          if (dat.messageCode == 904 || dat.messageCode == 906 || dat.messageCode == 903) {
+            // 这里的判断是授权，这个是用户账户异常的
+            _common.globalData.userInfo = null;
+          } else {
             resole(dat);
           }
         } catch (e) {
-          _tips2.default.toast('数据异常');
+          _tips.Tips.toast('数据异常');
           reject(e);
         }
       },
       fail: function fail(res) {
-        _tips2.default.toast('请求出错啦！');
+        _tips.Tips.toast('请求出错啦！');
         reject(res);
       }
     });

@@ -71,7 +71,7 @@
   }
   .det-sub-tit{
     display: block;
-    padding-top: 4px;
+    padding-top: 10px;
     font-size: 24px;
     color: #777777;
   }
@@ -93,6 +93,11 @@
         border: 1px solid #cccccc;
         &:after{
           border: none;
+        }
+        &.active{
+          background: #0CCCBB;
+          color: #FFFFFF;
+          border-color: #0CCCBB;
         }
       }
     }
@@ -151,6 +156,7 @@
     justify-content: space-between;
     .cart-nav-item{
       text-align: center;
+      position: relative;
       .icon,.title{
         display: block;
         color: #9c9a97;
@@ -162,6 +168,19 @@
       .title{
         font-size: 18px;
         line-height: 22px;
+      }
+      .shop-number{
+        position: absolute;
+        right: -20px;
+        top: -20px;
+        background: #B8141B;
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+        line-height: 35px;
+        text-align: center;
+        color: #FFFFFF;
+        font-size: 20px;
       }
     }
   }

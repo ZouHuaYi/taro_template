@@ -74,7 +74,7 @@
 }
 .det-title .det-sub-tit {
   display: block;
-  padding-top: 4rpx;
+  padding-top: 10rpx;
   font-size: 24rpx;
   color: #777777;
 }
@@ -99,6 +99,11 @@
 }
 .det-container .det-size .det-select-size .select-btn:after {
   border: none;
+}
+.det-container .det-size .det-select-size .select-btn.active {
+  background: #0CCCBB;
+  color: #FFFFFF;
+  border-color: #0CCCBB;
 }
 .det-container .det-all-text {
   text-align: center;
@@ -166,6 +171,7 @@
 }
 .cart-list .cart-nav .cart-nav-item {
   text-align: center;
+  position: relative;
 }
 .cart-list .cart-nav .cart-nav-item .icon,
 .cart-list .cart-nav .cart-nav-item .title {
@@ -179,4 +185,17 @@
 .cart-list .cart-nav .cart-nav-item .title {
   font-size: 18rpx;
   line-height: 22rpx;
+}
+.cart-list .cart-nav .cart-nav-item .shop-number {
+  position: absolute;
+  right: -20rpx;
+  top: -20rpx;
+  background: #B8141B;
+  width: 35rpx;
+  height: 35rpx;
+  border-radius: 50%;
+  line-height: 35rpx;
+  text-align: center;
+  color: #FFFFFF;
+  font-size: 20rpx;
 }

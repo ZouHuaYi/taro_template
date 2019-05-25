@@ -71,4 +71,22 @@ export  class Tips {
       return new Promise(resolve => setTimeout(resolve, duration));
     }
   }
+
+  /**
+   * 有确认和取消按钮的模态窗口
+   * */
+
+  static modal(content,scb,title='温馨提示'){
+    Taro.showModal({
+      title: title,
+      content: content,
+      success(res) {
+        if (res.confirm) {
+          scb&&scb()
+        } else if (res.cancel) {}
+      }
+    })
+  }
+
+
 }

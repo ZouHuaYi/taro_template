@@ -30,13 +30,13 @@
       "list": []
     },
     "miniprogram": {
-      "current": 11,
+      "current": 0,
       "list": [
         {
-          "id": -1,
+          "id": 0,
           "name": "商品详情页",
           "pathName": "pages/detail/detail",
-          "query": "",
+          "query": "id=3506",
           "scene": null
         },
         {
@@ -47,10 +47,10 @@
           "scene": null
         },
         {
-          "id": -1,
+          "id": 2,
           "name": "全部商品",
           "pathName": "pages/shopIndex/shopIndex",
-          "query": "",
+          "query": "id=3506",
           "scene": null
         },
         {

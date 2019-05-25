@@ -1,25 +1,28 @@
 <block>
-    <layout noBack="{{false}}" __triggerObserer="{{ _triggerObserer }}" title="添加地址" app-page="page-container" layout="page">
+    <layout noBack="{{false}}" __triggerObserer="{{ _triggerObserer }}" title="{{_id ? '修改地址' : '添加地址'}}" app-page="page-container" layout="page">
         <view class="addArea-box">
-            <form class="form">
+            <form class="form" bindsubmit="onSubmitData">
                 <view class="form-box">
                     <view class="form-ground"><text class="form-title">收货人</text>
-                        <input type="text" placeholder="请输入收件人姓名" />
+                        <input type="text" placeholder="请输入收件人姓名" name="name" value="{{areaData.receiveName}}" />
                     </view>
                     <view class="form-ground"><text class="form-title">联系电话</text>
-                        <input type="text" placeholder="请输入联系方式" />
+                        <input type="tel" placeholder="请输入联系方式" name="phone" value="{{areaData.receivePhone}}" />
                     </view>
                     <view class="form-ground"><text class="form-title">所在地区</text>
-                        <input type="text" placeholder="请选择所在地区" />
+                        <input type="text" disabled="{{true}}" placeholder="请选择所在地区" name="area" value="{{areaData.area}}" bindtap="togglePicker" data-e-tap-so="this" data-e-tap-a-a="{{false}}" />
                     </view>
                     <view class="form-ground"><text class="form-title">详细地址</text>
-                        <input type="text" placeholder="请输入详细地址" />
+                        <input type="text" placeholder="请输入详细地址" name="address" value="{{areaData.address}}" />
                     </view>
                 </view>
                 <view class="add-new-area">
-                    <button class="add-btn" type="primary">保存地址</button>
+                    <button class="add-btn" form-type="submit" type="primary">保存地址</button>
                 </view>
             </form>
+        </view>
+        <view class="picker-view">
+            <address-city pickerShow="{{pickerStatus}}" __triggerObserer="{{ _triggerObserer }}" bindonhandletoggleshow="togglePicker" __fn_onHandleToggleShow="{{true}}"></address-city>
         </view>
     </layout>
 </block>

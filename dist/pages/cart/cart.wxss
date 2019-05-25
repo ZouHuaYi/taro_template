@@ -20,6 +20,14 @@
       -ms-transform: translateY(-50%);
           transform: translateY(-50%);
 }
+.circle-icon {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+      -ms-transform: translateY(-50%);
+          transform: translateY(-50%);
+}
 .cart-item {
   width: 100%;
   -webkit-box-sizing: border-box;
@@ -40,7 +48,7 @@
 .cart-item .shop-img {
   width: 150rpx;
   height: 150rpx;
-  padding-left: 60rpx;
+  margin-left: 60rpx;
 }
 .cart-item .shop-img .img {
   display: block;
@@ -122,8 +130,10 @@
   padding-left: 80rpx;
   float: left;
 }
-.order-all .order-select .circle {
+.order-all .order-select .circle,
+.order-all .order-select .circle-icon {
   left: 30rpx;
+  line-height: 0;
 }
 .order-all .order-right {
   float: right;

@@ -106,6 +106,25 @@ var Tips = exports.Tips = function () {
         });
       }
     }
+    /**
+     * 有确认和取消按钮的模态窗口
+     * */
+
+  }, {
+    key: 'modal',
+    value: function modal(content, scb) {
+      var title = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : '温馨提示';
+
+      _index2.default.showModal({
+        title: title,
+        content: content,
+        success: function success(res) {
+          if (res.confirm) {
+            scb && scb();
+          } else if (res.cancel) {}
+        }
+      });
+    }
   }]);
 
   return Tips;

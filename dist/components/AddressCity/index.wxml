@@ -1,0 +1,22 @@
+<block>
+    <view class="{{pickerShow ? 'address-picker-container show' : 'address-picker-container'}}">
+        <view class="picker-content">
+            <view class="dialog-header">
+                <view class="dialog-button cancel" bindtap="handlePickerShow" data-e-tap-so="this" data-e-tap-a-a="{{false}}">取消</view>
+                <view class="dialog-title">请选择省市区</view>
+                <view class="dialog-button" bindtap="handlePickerShow" data-e-tap-so="this" data-e-tap-a-a="{{true}}">确定</view>
+            </view>
+            <picker-view bindchange="cityChange" value="{{value}}" class="picker-view-wrap">
+                <picker-view-column>
+                    <view class="picker-item" wx:key="index" wx:for="{{provinces}}" wx:for-item="province" wx:for-index="index">{{province.name}}</view>
+                </picker-view-column>
+                <picker-view-column>
+                    <view class="picker-item" wx:key="index" wx:for="{{citys}}" wx:for-item="city" wx:for-index="index">{{city.name}}</view>
+                </picker-view-column>
+                <picker-view-column>
+                    <view class="picker-item" wx:key="index" wx:for="{{areas}}" wx:for-item="area" wx:for-index="index">{{area.name}}</view>
+                </picker-view-column>
+            </picker-view>
+        </view>
+    </view>
+</block>

@@ -1,5 +1,6 @@
 {
   "usingComponents": {
-    "layout": "../../components/Layout/index"
+    "layout": "../../components/Layout/index",
+    "address-city": "../../components/AddressCity/index"
   }
 }

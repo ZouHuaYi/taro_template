@@ -30,7 +30,7 @@ class Index extends Component<IndexProps,IndexState > {
   }
 
   componentDidMount() {
-    
+    console.log('0-0-0-0')
   }
 
   render() {
