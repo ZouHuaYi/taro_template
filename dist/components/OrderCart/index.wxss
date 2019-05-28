@@ -52,6 +52,14 @@
 .shop-detail .shop-right .shop-title {
   font-size: 32rpx;
   padding: 10rpx 0;
+  width: 100%;
+  display: -webkit-box !important;
+  word-break: break-all;
+  -o-text-overflow: ellipsis;
+     text-overflow: ellipsis;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
 }
 .shop-detail .shop-right .shop-price {
   position: absolute;

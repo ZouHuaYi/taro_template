@@ -18,11 +18,15 @@ var tslib_1 = _interopRequireWildcard(_tslib);
 
 var _index = require("../../npm/@tarojs/taro-weapp/index.js");
 
-var _index2 = require("../../npm/@tarojs/redux/index.js");
+var _index2 = _interopRequireDefault(_index);
+
+var _index3 = require("../../npm/@tarojs/redux/index.js");
 
 var _common = require("../../utils/common.js");
 
 var _tips = require("../../utils/tips.js");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
@@ -38,7 +42,8 @@ var Cart = (_temp2 = _class = function (_BaseComponent) {
   _inherits(Cart, _BaseComponent);
 
   function Cart() {
-    var _ref;
+    var _ref,
+        _this2 = this;
 
     var _temp, _this, _ret;
 
@@ -48,71 +53,92 @@ var Cart = (_temp2 = _class = function (_BaseComponent) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Cart.__proto__ || Object.getPrototypeOf(Cart)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["cartStatusObj", "cartShopListData", "allSelectStatus", "allMonney", "dispatch", "cart"], _this.selectOrder = function (key) {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Cart.__proto__ || Object.getPrototypeOf(Cart)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["cartList", "cartStatusObj", "allSelectStatus", "allMonney", "cartShopListData", "dispatch", "cart"], _this.selectOrder = function (keys, key) {
+      var cartList = _this.props.cart.cartList;
       var _this$state = _this.state,
-          cartShopListData = _this$state.cartShopListData,
-          cartStatusObj = _this$state.cartStatusObj;
+          cartStatusObj = _this$state.cartStatusObj,
+          allMonney = _this$state.allMonney,
+          allSelectStatus = _this$state.allSelectStatus;
 
-      var allMonney = _this.state.allMonney;
-      if (cartStatusObj['sl_' + key]) {
-        cartStatusObj['sl_' + key] = false;
-        if (cartShopListData[key]) {
-          allMonney -= cartShopListData[key].discountPrice * cartShopListData[key].number;
-        }
+      var item = cartList[keys].item[key];
+      var k = "sl_" + keys + "_" + key;
+      if (cartStatusObj[k]) {
+        cartStatusObj[k] = false;
+        allMonney -= Number(item.discountPrice * item.number);
+        allSelectStatus = false;
       } else {
-        cartStatusObj['sl_' + key] = true;
-        if (cartShopListData[key]) {
-          allMonney += cartShopListData[key].discountPrice * cartShopListData[key].number;
-        }
+        cartStatusObj[k] = true;
+        allMonney += Number(item.discountPrice * item.number);
       }
       _this.setState({
         cartStatusObj: cartStatusObj,
         allMonney: allMonney,
-        allSelectStatus: false
+        allSelectStatus: allSelectStatus
       });
-      var cartAccountList = [];
-      for (var k in cartStatusObj) {
-        if (cartStatusObj[k]) {
-          var v = k.substring(3);
-          cartAccountList.push(cartShopListData[v]);
-        }
-      }
-      _this.props.dispatch({
-        type: 'detail/save',
-        data: {
-          cartAccountList: cartAccountList
-        }
-      });
-    }, _this.addOrSubtractNumber = function (e) {
-      var _e$currentTarget$data = e.currentTarget.dataset,
-          status = _e$currentTarget$data.status,
-          key = _e$currentTarget$data.key;
-      var _this$state2 = _this.state,
-          cartShopListData = _this$state2.cartShopListData,
-          cartStatusObj = _this$state2.cartStatusObj;
+    }, _this.addOrSubtractNumber = function () {
+      var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(keys, key, status) {
+        var cartList, _this$state2, cartStatusObj, allMonney, item, k;
 
-      var allMonney = _this.state.allMonney;
-      if (cartStatusObj['sl_' + key]) {
-        allMonney = allMonney - cartShopListData[key].number * cartShopListData[key].discountPrice;
-      }
-      if (status) {
-        // 加
-        cartShopListData[key].number += 1;
-      } else {
-        // 减
-        if (cartShopListData[key].number > 1) {
-          cartShopListData[key].number -= 1;
-        }
-      }
-      if (cartStatusObj['sl_' + key]) {
-        allMonney = allMonney + cartShopListData[key].number * cartShopListData[key].discountPrice;
-      }
-      _this.setState({
-        cartShopListData: cartShopListData,
-        allMonney: allMonney
-      });
-    }, _this.deleteCartFun = function (id) {
+        return regeneratorRuntime.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                cartList = _this.props.cart.cartList;
+                _this$state2 = _this.state, cartStatusObj = _this$state2.cartStatusObj, allMonney = _this$state2.allMonney;
+                item = _extends({}, cartList[keys].item[key]);
+                k = "sl_" + keys + "_" + key;
+
+                if (status) {
+                  // 加
+                  cartList[keys].item[key].number += 1;
+                } else {
+                  // 减
+                  if (cartList[keys].item[key].number > 1) {
+                    cartList[keys].item[key].number -= 1;
+                  }
+                }
+                if (cartStatusObj[k]) {
+                  allMonney = allMonney - item.number * item.discountPrice;
+                  allMonney += cartList[keys].item[key].number * item.discountPrice;
+                }
+                _context.next = 8;
+                return _this.props.dispatch({
+                  type: 'cart/save',
+                  data: {
+                    cartList: cartList
+                  }
+                });
+
+              case 8:
+                _this.setState({
+                  allMonney: allMonney
+                });
+                // 强制刷新
+                _this.forceUpdate();
+
+              case 10:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, _this2);
+      }));
+
+      return function (_x, _x2, _x3) {
+        return _ref2.apply(this, arguments);
+      };
+    }(), _this.deleteCartFun = function (id) {
       _tips.Tips.modal('你是否要删除该条数据', function () {
+        var cartStatusObj = _this.state.cartStatusObj;
+
+        for (var k in cartStatusObj) {
+          cartStatusObj[k] = false;
+        }
+        _this.setState({
+          allMonney: 0,
+          cartStatusObj: _extends({}, cartStatusObj),
+          allSelectStatus: false
+        });
         _this.props.dispatch({
           type: 'cart/deleteCartList',
           params: {
@@ -120,38 +146,89 @@ var Cart = (_temp2 = _class = function (_BaseComponent) {
           }
         });
       });
-    }, _this.selectAllList = function () {
+    }, _this.goToOrder = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
+      var cartList, cartStatusObj, key, payAccountList, newList;
+      return regeneratorRuntime.wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              cartList = _this.props.cart.cartList;
+              cartStatusObj = _this.state.cartStatusObj;
+              key = Object.keys(cartStatusObj);
+              payAccountList = [];
+              // 计算所有的选择产品
+
+              key.forEach(function (item) {
+                if (!cartStatusObj[item]) {
+                  return;
+                }
+                var k = item.split('_');
+                var h = _extends({}, cartList[k[1]]);
+                var i = h.item;
+                // 循环 原来的医院中是否已经存在这个值
+                h.item = [i[k[2]]];
+                payAccountList.push(h);
+              });
+              // 判断是否选择
+
+              if (!(payAccountList.length === 0)) {
+                _context2.next = 8;
+                break;
+              }
+
+              _tips.Tips.toast('请选择商品');
+              return _context2.abrupt("return");
+
+            case 8:
+              newList = [];
+              // 合并 相同医院的数据一起
+
+              payAccountList.forEach(function (item) {
+                newList = newList.map(function (it) {
+                  var t = it.item;
+                  if (item.hospital.id == it.hospital.id) {
+                    // 如果已经存在着个医院的时候
+                    t.push(item.item[0]);
+                  }
+                  return t;
+                });
+                newList.push(item);
+              });
+              // console.log(payAccountList);
+              return _context2.abrupt("return");
+
+            case 13:
+              // 跳转
+              _index2.default.navigateTo({
+                url: '/pages/order/order?type=cart'
+              });
+
+            case 14:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, _callee2, _this2);
+    })), _this.selectAllList = function () {
+      var cartList = _this.props.cart.cartList;
       var _this$state3 = _this.state,
-          cartShopListData = _this$state3.cartShopListData,
           cartStatusObj = _this$state3.cartStatusObj,
           allSelectStatus = _this$state3.allSelectStatus;
 
       var allMonney = 0;
-      var cartObj = cartStatusObj;
-      var cartAccountList = cartShopListData;
-      if (!allSelectStatus) {
-        cartShopListData.forEach(function (item, key) {
-          cartObj['sl_' + key] = true;
-          allMonney += Number(item.number * item.discountPrice);
+      cartList.forEach(function (item, keys) {
+        item.item && item.item.forEach(function (it, key) {
+          var k = "sl_" + keys + "_" + key;
+          cartStatusObj[k] = !allSelectStatus;
+          if (!allSelectStatus) {
+            allMonney += it.number * it.discountPrice;
+          }
         });
-        cartAccountList = cartShopListData;
-      } else {
-        cartShopListData.forEach(function (item, key) {
-          cartObj['sl_' + key] = false;
-        });
-        cartAccountList = [];
-      }
-      _this.setState({
-        allMonney: allMonney,
-        cartStatusObj: _extends({}, cartObj),
-        cartShopListData: cartShopListData,
-        allSelectStatus: !allSelectStatus
       });
-      _this.props.dispatch({
-        type: 'detail/save',
-        data: {
-          cartAccountList: cartAccountList
-        }
+      _this.setState({
+        allSelectStatus: !allSelectStatus,
+        cartStatusObj: _extends({}, cartStatusObj),
+        allMonney: allMonney
       });
     }, _this.$$refs = [], _temp), _possibleConstructorReturn(_this, _ret);
   }
@@ -160,7 +237,7 @@ var Cart = (_temp2 = _class = function (_BaseComponent) {
     key: "_constructor",
     value: function _constructor(props) {
       _get(Cart.prototype.__proto__ || Object.getPrototypeOf(Cart.prototype), "_constructor", this).call(this, props);
-      // 选择 - 订单
+      // 单 选择 的时候 - 订单
 
       this.state = {
         cartShopListData: [],
@@ -172,17 +249,17 @@ var Cart = (_temp2 = _class = function (_BaseComponent) {
   }, {
     key: "componentDidMount",
     value: function () {
-      var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
-        return regeneratorRuntime.wrap(function _callee$(_context) {
+      var _ref4 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3() {
+        return regeneratorRuntime.wrap(function _callee3$(_context3) {
           while (1) {
-            switch (_context.prev = _context.next) {
+            switch (_context3.prev = _context3.next) {
               case 0:
                 if (!(this.state.cartShopListData.length === 0)) {
-                  _context.next = 4;
+                  _context3.next = 4;
                   break;
                 }
 
-                _context.next = 3;
+                _context3.next = 3;
                 return (0, _common.loginStatus)();
 
               case 3:
@@ -192,34 +269,18 @@ var Cart = (_temp2 = _class = function (_BaseComponent) {
 
               case 4:
               case "end":
-                return _context.stop();
+                return _context3.stop();
             }
           }
-        }, _callee, this);
+        }, _callee3, this);
       }));
 
       function componentDidMount() {
-        return _ref2.apply(this, arguments);
+        return _ref4.apply(this, arguments);
       }
 
       return componentDidMount;
     }()
-  }, {
-    key: "componentWillReceiveProps",
-    value: function componentWillReceiveProps(nextProps, nextContext) {
-      var cartShopListData = [];
-      nextProps.cart.cartList.forEach(function (item) {
-        if (item.item && item.item instanceof Array && item.item.length > 0) {
-          cartShopListData = cartShopListData.concat(item.item);
-        }
-      });
-      this.setState({
-        cartShopListData: cartShopListData,
-        allMonney: 0,
-        cartStatusObj: {},
-        allSelectStatus: false
-      });
-    }
   }, {
     key: "_createData",
     value: function _createData() {
@@ -233,8 +294,11 @@ var Cart = (_temp2 = _class = function (_BaseComponent) {
           cartStatusObj = _state.cartStatusObj,
           allMonney = _state.allMonney,
           allSelectStatus = _state.allSelectStatus;
+      var cartList = this.__props.cart.cartList;
 
-      Object.assign(this.__state, {});
+      Object.assign(this.__state, {
+        cartList: cartList
+      });
       return this.__state;
     }
   }]);
@@ -249,9 +313,9 @@ var Cart = (_temp2 = _class = function (_BaseComponent) {
     "type": null,
     "value": null
   }
-}, _class.$$events = ["selectOrder", "deleteCartFun", "addOrSubtractNumber", "selectAllList"], _temp2);
-Cart = tslib_1.__decorate([(0, _index2.connect)(function (_ref3) {
-  var cart = _ref3.cart;
+}, _class.$$events = ["selectOrder", "deleteCartFun", "addOrSubtractNumber", "selectAllList", "goToOrder"], _temp2);
+Cart = tslib_1.__decorate([(0, _index3.connect)(function (_ref5) {
+  var cart = _ref5.cart;
   return { cart: cart };
 })], Cart);
 exports.default = Cart;

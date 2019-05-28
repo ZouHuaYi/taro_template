@@ -4,6 +4,7 @@ import shopIndex from '../pages/shopIndex/model';
 import detail from '../pages/detail/model';
 import areaList from '../pages/areaList/model';
 import cart from '../pages/cart/model';
+import buyOrder from '../pages/buyOrder/model';
 
 export default [
   global,
@@ -11,5 +12,6 @@ export default [
   shopIndex,
   detail,
   areaList,
-  cart
+  cart,
+  buyOrder
 ]

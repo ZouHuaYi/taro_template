@@ -15,9 +15,11 @@
                         </view>
                     </block>
                     <block wx:else>
-                        <block wx:if="{{cartAccountList && cartAccountList.length > 0}}">
-                            <view wx:for="{{cartAccountList}}" wx:for-item="item" wx:for-index="key">
-                                <order-cart detailData="{{item}}" __triggerObserer="{{ _triggerObserer }}" orderNumber="{{item.number}}"></order-cart>
+                        <block wx:if="{{payAccountList && payAccountList.length > 0}}">
+                            <view wx:key="keys" wx:for="{{payAccountList}}" wx:for-item="item" wx:for-index="keys">
+                                <block wx:if="{{item.item}}">
+                                    <order-cart wx:key="id" __triggerObserer="{{ _triggerObserer }}" detailData="{{it}}" orderNumber="{{it.number}}" wx:for="{{item.item}}" wx:for-item="it" wx:for-index="key"></order-cart>
+                                </block>
                             </view>
                         </block>
                     </block>
@@ -25,14 +27,15 @@
                 <view class="send-type"><text class="send-name">支付配送</text><text class="type">快递免邮</text>
                 </view>
                 <view class="user-buy"><text class="user-say">买家留言</text>
-                    <input class="user-inp" name="content" type="text" placeholder="选填，对本次交易的说明" />
+                    <input class="user-inp" name="content" bindinput="inputRemark" type="text" placeholder="选填，对本次交易的说明" />
                 </view>
             </view>
         </view>
+        <view class="footer-line"></view>
         <view class="btn-floor">
             <view class="floor-text"><text class="s-pay-monney">支付金额</text><text class="s-price">￥{{payMonney}}</text>
             </view>
-            <view class="post-btn">立即购买</view>
+            <view class="post-btn" bindtap="buyShop">立即购买</view>
         </view>
     </layout>
 </block>

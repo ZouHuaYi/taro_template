@@ -2,30 +2,39 @@
     <layout noBack="{{true}}" __triggerObserer="{{ _triggerObserer }}" title="购物车" app-page="page-container" layout="page">
         <view class="cart-box">
             <view class="cart-list">
-                <view wx:key="id" class="{{'' + (cartStatusObj['sl_' + key] === true ? 'on' : 'off')}}" wx:for="{{cartShopListData}}" wx:for-item="item" wx:for-index="key">
-                    <view class="cart-item">
-                        <block>
-                            <block wx:if="{{cartStatusObj['sl_' + key] === true}}">
-                                <icon class="circle-icon" bindtap="selectOrder" type="success" size="20" data-e-tap-so="this" data-e-tap-a-a="{{key}}"></icon>
-                            </block>
-                            <block wx:else><text class="circle" bindtap="selectOrder" data-e-tap-so="this" data-e-tap-a-a="{{key}}"></text>
-                            </block>
+                <block wx:if="{{cartList}}">
+                    <view wx:key="hospital.id" wx:for="{{cartList}}" wx:for-item="items" wx:for-index="keys">
+                        <view class="hospitalName">{{items.hospital.name}}</view>
+                        <block wx:if="{{items.item}}">
+                            <view wx:key="id" wx:for="{{items.item}}" wx:for-item="item" wx:for-index="key">
+                                <view>
+                                    <view class="cart-item" wx:key="id">
+                                        <block>
+                                            <block wx:if="{{cartStatusObj['sl_' + keys + '_' + key] === true}}">
+                                                <icon class="circle-icon" bindtap="selectOrder" type="success" size="20" data-e-tap-so="this" data-e-tap-a-a="{{keys}}" data-e-tap-a-b="{{key}}"></icon>
+                                            </block>
+                                            <block wx:else><text class="circle" bindtap="selectOrder" data-e-tap-so="this" data-e-tap-a-a="{{keys}}" data-e-tap-a-b="{{key}}"></text>
+                                            </block>
+                                        </block>
+                                        <navigator open-type="navigate" url="{{'/pages/detail/detail?id=' + item.productId}}" class="shop-img">
+                                            <image class="img" src="{{item.thumbnail}}"></image>
+                                        </navigator>
+                                        <view class="shop-text">
+                                            <view class="shop-tit">{{item.title}}</view><text class="shop-type">{{item.specificationGroup.specification}}</text>
+                                            <view class="shop-price">{{item.discountPrice}}</view>
+                                        </view>
+                                        <view class="delete icon iconfont icon-shanchu" bindtap="deleteCartFun" data-e-tap-so="this" data-e-tap-a-a="{{item.shoppingCartId}}"></view>
+                                        <view class="add-number"><text class="btn" bindtap="addOrSubtractNumber" data-e-tap-so="this" data-e-tap-a-a="{{keys}}" data-e-tap-a-b="{{key}}" data-e-tap-a-c="{{false}}">-</text><text class="btn-center">{{item.number}}</text><text class="btn" bindtap="addOrSubtractNumber" data-e-tap-so="this" data-e-tap-a-a="{{keys}}" data-e-tap-a-b="{{key}}" data-e-tap-a-c="{{true}}">+</text>
+                                        </view>
+                                    </view>
+                                    <view class="center-line"></view>
+                                </view>
+                            </view>
                         </block>
-                        <navigator open-type="navigate" url="{{'/pages/detail/detail?id=' + item.productId}}" class="shop-img">
-                            <image class="img" src="{{item.thumbnail}}"></image>
-                        </navigator>
-                        <view class="shop-text">
-                            <view class="shop-tit">{{item.title}}</view><text class="shop-type">{{item.specificationGroup.specification}}</text>
-                            <view class="shop-price">{{item.discountPrice}}</view>
-                        </view>
-                        <view class="delete icon iconfont icon-shanchu" bindtap="deleteCartFun" data-e-tap-so="this" data-e-tap-a-a="{{item.shoppingCartId}}"></view>
-                        <view class="add-number"><text class="btn" data-status="{{false}}" data-key="{{key}}" bindtap="addOrSubtractNumber">-</text><text class="btn-center">{{item.number}}</text><text class="btn" data-status="{{true}}" data-key="{{key}}" bindtap="addOrSubtractNumber">+</text>
-                        </view>
                     </view>
-                    <view class="center-line"></view>
-                </view>
+                </block>
             </view>
-            <block wx:if="{{cartShopListData.length === 0}}">
+            <block wx:if="{{cartList.length === 0}}">
                 <on-data __triggerObserer="{{ _triggerObserer }}"></on-data>
             </block>
         </view>
@@ -40,7 +49,7 @@
                 </block><text class="">全选</text>
             </view>
             <view class="order-right"><text class="order-price">合计:{{allMonney}}元</text>
-                <navigator open-type="navigate" url="/pages/order/order?type=cart" class="order-btn">去结算</navigator>
+                <view bindtap="goToOrder" class="order-btn">去结算</view>
             </view>
         </view>
     </layout>

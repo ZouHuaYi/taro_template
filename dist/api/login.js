@@ -17,7 +17,8 @@ var authorLogin = exports.authorLogin = function () {
               data: {
                 encryptedData: params.encryptedData,
                 iv: params.iv,
-                code: params.code
+                code: params.code,
+                type: 1
               }
             }));
 

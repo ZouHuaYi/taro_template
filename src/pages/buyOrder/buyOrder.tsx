@@ -7,20 +7,21 @@ import {
   Button,
   ScrollView,
 } from '@tarojs/components';
-// import { connect } from '@tarojs/redux'
+import { connect } from '@tarojs/redux';
 import Layout from '../../components/Layout';
 
 import './buyOrder.less'
 
 interface BuyOrderProps {
- 
+  buyOrder:any,
+  dispatch:any,
 }
 
 interface BuyOrderState {
  
 }
 
-// @connect(({})=>({}))
+@connect(({buyOrder})=>({buyOrder}))
 class BuyOrder extends Component<BuyOrderProps,BuyOrderState > {
  
   constructor(props: BuyOrderProps) {
@@ -29,7 +30,12 @@ class BuyOrder extends Component<BuyOrderProps,BuyOrderState > {
   }
 
   componentDidMount() {
-    
+    this.props.dispatch({
+      type:'buyOrder/getOrderList',
+      params:{
+
+      }
+    })
   }
 
   render() {
@@ -39,6 +45,7 @@ class BuyOrder extends Component<BuyOrderProps,BuyOrderState > {
         <View className='buy-nav'>
           <View className='nav-item active'>全部</View>
           <View className='buy-item'>
+            <Text className='nav-item'>待付款</Text>
             <Text className='nav-item'>待发货</Text>
             <Text className='nav-item'>待收货</Text>
             <Text className='nav-item'>待评价</Text>

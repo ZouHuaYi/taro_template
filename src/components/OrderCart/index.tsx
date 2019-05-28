@@ -19,7 +19,7 @@ interface OrderCartState {
 class OrderCart extends Component<OrderCartProps,OrderCartState > {
  
   constructor(props: OrderCartProps) {
-    super(props)
+    super(props);
     this.state = {}
   }
 
@@ -50,6 +50,7 @@ class OrderCart extends Component<OrderCartProps,OrderCartState > {
             <Text className='shop-number'>x{orderNumber}</Text>
           </View>
         </View>
+
       </View>
     )
   }

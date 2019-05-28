@@ -14,6 +14,7 @@ import Layout from '../../components/Layout';
 import WxParse from '../../components/wxParse/wxParse';
 import {Tips} from "../../utils/tips";
 import {loginJudge} from "../../utils/common";
+import {interOrder} from "./interface";
 
 
 import './detail.less'
@@ -32,7 +33,7 @@ interface DetailState {
 class Detail extends Component<DetailProps,DetailState > {
  
   constructor(props: DetailProps) {
-    super(props)
+    super(props);
     this.state = {
       selectIndex:-1,
       typeid:null
@@ -85,11 +86,38 @@ class Detail extends Component<DetailProps,DetailState > {
       selectIndex:key,
       typeid:val,
     })
+
   }
 
   // 立即购买
    goToBuyPlace = async () => {
     await loginJudge();
+    const selectIndex = this.state.selectIndex;
+    if(this.state.selectIndex===-1){
+      Tips.toast('请选择产品规格');
+      return ;
+    }
+
+    /*
+    * item: [{"number":"1","productId":"3498","specificationGroup":"210"}]
+    * */
+    // 存储单张订单的数据
+     const {detailData} = this.props.detail;
+
+     await this.props.dispatch({
+            type:'detail/save',
+            data:{
+              orderPlaceData:{
+                hospitalid: detailData.hospital.id,
+                item:{
+                  productId: detailData.id,
+                  specificationGroup:detailData.specification[selectIndex].id
+                }
+              }
+            }
+         })
+
+
     Taro.navigateTo({
       url:`/pages/order/order?id=${this.$router.params.id}`
     })

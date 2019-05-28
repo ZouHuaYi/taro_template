@@ -19,7 +19,8 @@ var _service2 = require("../detail/service.js");
 exports.default = {
   namespace: 'cart',
   state: {
-    cartList: []
+    cartList: [],
+    payAccountList: []
   },
   effects: {
     // 获取购物车列表的数据

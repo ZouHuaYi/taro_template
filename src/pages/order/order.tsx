@@ -3,7 +3,6 @@ import Taro, { Component, Config } from '@tarojs/taro';
 import { 
   View,
   Text,
-  Image,
   Input,
 } from '@tarojs/components';
 
@@ -13,21 +12,24 @@ import AreaCart from '../../components/AreaCart';
 import OrderCart from '../../components/OrderCart';
 
 import './order.less'
+import {Tips} from "../../utils/tips";
 
 interface OrderProps {
   detail:any,
   dispatch:any,
   areaList:any,
+  cart:any,
 }
 
 interface OrderState {
   orderNumber:number,
   payMonney:number|null,
   price:number|null,
-  hasIdState:boolean
+  hasIdState:boolean,
+  remark:string
 }
 
-@connect(({detail,areaList})=>({detail,areaList}),)
+@connect(({detail,areaList,cart})=>({detail,areaList,cart}),)
 class Order extends Component<OrderProps,OrderState > {
  
   constructor(props: OrderProps) {
@@ -37,26 +39,32 @@ class Order extends Component<OrderProps,OrderState > {
       payMonney:null,
       price:null,
       hasIdState:false,
+      remark:''
     }
   }
 
   async componentDidMount() {
     const {id,type} = this.$router.params;
     const { detailData,cartAccountList } = this.props.detail;
+    const {payAccountList} = this.props.cart;
+
     let price = 0;
     if(id){
+      // 单点击产品的时候
       this.setState({
         hasIdState:true
       })
 
     }else if(type=='cart'){
-      cartAccountList.forEach( item=>{
-        price += Number(item.discountPrice*item.number);
+      // 计算购物车过来的数据
+      payAccountList.forEach( item=>{
+        let it = item.item[0];
+        price += Number(it.discountPrice*it.number);
       })
+
       this.setState({
         hasIdState:false
       })
-
     }
 
     if(detailData.length==0 && id){
@@ -67,9 +75,7 @@ class Order extends Component<OrderProps,OrderState > {
         }
       })
     }
-
     const area = this.props.areaList.selectAreaData;
-
     if(!area){
       this.props.dispatch({
         type:'areaList/getDefaultData'
@@ -78,13 +84,10 @@ class Order extends Component<OrderProps,OrderState > {
 
     // 设置起初价格
     this.setState({
-      payMonney:detailData.discount_price || price,
+      payMonney:type==='cart'? price : detailData.discount_price,
       price:detailData.discount_price,
     })
   }
-
-
-
 
   // 点击增加或者减少数量的按钮
   addOrMinus = (key) => {
@@ -104,9 +107,81 @@ class Order extends Component<OrderProps,OrderState > {
     }
   }
 
+  // 生成购买的订单
+  buyShop = () => {
+    const {selectAreaData} = this.props.areaList;
+    const {id,type} = this.$router.params;
+    const {orderNumber,payMonney,remark} = this.state;
+    if(!selectAreaData.id){
+      Tips.toast('请选择先地址');
+      return;
+    }
+
+    // 只有一个商品的时候生成一个订单的接口
+    if(id){
+      const {orderPlaceData,} = this.props.detail;
+
+      let item = JSON.stringify([{
+          ...orderPlaceData.item,
+          number:orderNumber
+        }]
+      )
+      this.props.dispatch({
+        type:'detail/createPayOrder',
+        params:{
+          item,
+          remark:remark,
+          areaid:selectAreaData.id,
+          price:payMonney,
+          hospitalid: orderPlaceData.hospitalid,
+        }
+      })
+    }else if(type==='cart') {
+      // 多个产品生成一个订单
+      const {payAccountList} = this.props.cart;
+      let accountList = [...payAccountList];
+
+      accountList = accountList.map(item=>{
+
+        // let it = {...item};
+        // item.hospital = {
+        //   id:it.hospital.id
+        // }
+        // item.item = [{
+        //   number: it.item[0].number,
+        //   productId: it.item[0].productId,
+        //   shoppingCartId: it.item[0].shoppingCartId,
+        //   specificationGroupId: it.item[0].specificationGroupId,
+        // }]
+
+        item.remark = remark;
+        return item;
+      })
+
+      let item = JSON.stringify(accountList);
+      this.props.dispatch({
+        type:'detail/createMoreOrder',
+        params:{
+          areaid:selectAreaData.id,
+          item,
+        }
+      })
+
+
+    }
+  }
+
+  // 绑定输入框输入文字
+  inputRemark = (e) => {
+    this.setState({
+      remark:e.detail.value,
+    })
+  }
+
 
   render() {
-    const {detailData,cartAccountList} = this.props.detail;
+    const {detailData} = this.props.detail;
+    const {payAccountList} = this.props.cart;
     const {selectAreaData} = this.props.areaList;
     const {payMonney,orderNumber,hasIdState} = this.state;
 
@@ -130,10 +205,17 @@ class Order extends Component<OrderProps,OrderState > {
                     </View>
                   </View>
                 ):
-                cartAccountList && cartAccountList.length > 0 && cartAccountList.map((item, key) => {
+                payAccountList && payAccountList.length > 0 && payAccountList.map((item, keys) => {
                     return (
-                      <View>
-                        <OrderCart  detailData={item} orderNumber={item.number}  ></OrderCart>
+                      <View key={keys}>
+                        {
+                          item.item&&item.item.map((it,key)=>{
+                            return(
+                              <OrderCart key={it.id}  detailData={it} orderNumber={it.number}  ></OrderCart>
+                            )
+                          })
+                        }
+
                       </View>
                     )
                   })
@@ -145,16 +227,17 @@ class Order extends Component<OrderProps,OrderState > {
             </View>
             <View className='user-buy'>
               <Text className='user-say'>买家留言</Text>
-              <Input className='user-inp' name='content' type='text' placeholder={'选填，对本次交易的说明'} />
+              <Input className='user-inp' name='content' onInput={this.inputRemark} type='text' placeholder={'选填，对本次交易的说明'} />
             </View>
           </View>
       </View>
+      <View className='footer-line'></View>
       <View className='btn-floor'>
         <View className='floor-text'>
           <Text className='s-pay-monney'>支付金额</Text>
           <Text className='s-price'>￥{payMonney}</Text>
         </View>
-        <View className='post-btn'>立即购买</View>
+        <View className='post-btn' onClick={this.buyShop}>立即购买</View>
       </View>
     </Layout>
     )

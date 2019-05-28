@@ -1,13 +1,13 @@
-import {toWork} from "../../utils/common";
+import {toWork,globalData} from "../../utils/common";
 import {cartShopList} from "./service";
 import {Tips} from "../../utils/tips";
 import {addOrdeleteCartAction} from "../detail/service";
-import {globalData} from "../../utils/common";
 
 export default {
   namespace:'cart',
   state:{
     cartList:[],
+    payAccountList:[]
   },
   effects:{
     // 获取购物车列表的数据
@@ -51,8 +51,7 @@ export default {
       }else {
         Tips.toast(result.message||'删除失败');
       }
-
-      }
+    }
 
   },
   reducers:{

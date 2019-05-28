@@ -78,6 +78,7 @@ var Detail = (_temp2 = _class = function (_BaseComponent) {
         typeid: val
       });
     }, _this.goToBuyPlace = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
+      var selectIndex, detailData;
       return regeneratorRuntime.wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
@@ -86,11 +87,42 @@ var Detail = (_temp2 = _class = function (_BaseComponent) {
               return (0, _common.loginJudge)();
 
             case 2:
+              selectIndex = _this.state.selectIndex;
+
+              if (!(_this.state.selectIndex === -1)) {
+                _context.next = 6;
+                break;
+              }
+
+              _tips.Tips.toast('请选择产品规格');
+              return _context.abrupt("return");
+
+            case 6:
+              /*
+              * item: [{"number":"1","productId":"3498","specificationGroup":"210"}]
+              * */
+              // 存储单张订单的数据
+              detailData = _this.props.detail.detailData;
+              _context.next = 9;
+              return _this.props.dispatch({
+                type: 'detail/save',
+                data: {
+                  orderPlaceData: {
+                    hospitalid: detailData.hospital.id,
+                    item: {
+                      productId: detailData.id,
+                      specificationGroup: detailData.specification[selectIndex].id
+                    }
+                  }
+                }
+              });
+
+            case 9:
               _index2.default.navigateTo({
                 url: "/pages/order/order?id=" + _this.$router.params.id
               });
 
-            case 3:
+            case 10:
             case "end":
               return _context.stop();
           }

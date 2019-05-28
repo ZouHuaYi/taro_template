@@ -19,8 +19,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var Admin_Root = 'https://admin.topmei3mei.com';
 var Test_Root = 'https://test.topmei3mei.com';
-var dev_status = true;
-var Root = Admin_Root;
+var dev_status = false;
+var Root = Test_Root;
 function request(options) {
   return new Promise(function (resole, reject) {
     var data = options.data;

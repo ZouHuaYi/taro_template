@@ -3,9 +3,12 @@ import {toWork,globalData,loginJudge} from "../../utils/common";
 import {
   getDetail,
   addOrdeleteCartAction,
-  getShopCartNumber
+  getShopCartNumber,
+  placeOder, wxPayMonney,multiProduct
 } from "./service";
+import {InterOrder} from "./interface";
 import {Tips} from "../../utils/tips";
+import Taro from "@tarojs/taro";
 
 export default {
   namespace:'detail',
@@ -13,6 +16,7 @@ export default {
     detailData:{},
     shopCartNumber:0,
     cartAccountList:[],
+    orderPlaceData:{}
   },
   effects:{
     // 获取详细信息
@@ -20,6 +24,7 @@ export default {
       yield put({
         type:'save',
         data:{
+          orderPlaceData:{},
           detailData:{},
         }
       })
@@ -75,7 +80,67 @@ export default {
       }else {
         Tips.toast(result.message||'无法获取购物车数量');
       }
-
+    },
+    // 生成支付订单
+    *createPayOrder({params}:InterOrder,{call,put}){
+       const [err,result] = yield call(toWork(placeOder),{params,});
+       if(err) return ;
+       if(result.messageCode==900){
+          // 下单成功
+         yield put({
+           type:'wechatPayMonney',
+           result,
+         })
+       }else {
+         Tips.toast(result.message||'该订单无法生成');
+       }
+    },
+    // 多订单一起生成订单号
+    *createMoreOrder({params},{call,put}){
+      const [err,result] = yield call(toWork(multiProduct),params);
+      if(err) return ;
+      if(result.messageCode==900){
+        // 下单成功
+        yield put({
+          type:'wechatPayMonney',
+          result,
+        })
+      }else {
+        Tips.toast(result.message||'该订单无法生成');
+      }
+    },
+    // 微信签名 支付模块
+    *wechatPayMonney({result},{call,select}){
+      // 下单成功
+      const openid = yield select(state=>state.login);
+      const  [payerr,signData] = yield call(toWork(wxPayMonney),{
+        openid:openid.openid,
+        orderNumber:result.data.orderNumber,
+      })
+      if(payerr) return ;
+      if(signData.messageCode==900){
+        // 调起微信支付
+        let {timestamp,total_fee,noncestr,prepayid,sign} = signData.data;
+        Taro.requestPayment({
+          timeStamp: String(timestamp),
+          nonceStr: noncestr,
+          package: `prepay_id=${prepayid}`,
+          signType: 'MD5',
+          paySign: sign,
+          total_fee:total_fee,
+          success:res => {
+            Tips.success('支付成功');
+            Taro.reLaunch({
+              url:'/pages/user/user'
+            })
+          },
+          fail:error=>{
+            Tips.toast('支付失败')
+          }
+        })
+      }else {
+        Tips.toast(signData.message||'微信签名失败');
+      }
     }
   },
 

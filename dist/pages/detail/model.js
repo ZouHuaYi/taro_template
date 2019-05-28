@@ -14,12 +14,19 @@ var _service = require("./service.js");
 
 var _tips = require("../../utils/tips.js");
 
+var _index = require("../../npm/@tarojs/taro-weapp/index.js");
+
+var _index2 = _interopRequireDefault(_index);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 exports.default = {
   namespace: 'detail',
   state: {
     detailData: {},
     shopCartNumber: 0,
-    cartAccountList: []
+    cartAccountList: [],
+    orderPlaceData: {}
   },
   effects: {
     // 获取详细信息
@@ -38,6 +45,7 @@ exports.default = {
               return put({
                 type: 'save',
                 data: {
+                  orderPlaceData: {},
                   detailData: {}
                 }
               });
@@ -216,6 +224,188 @@ exports.default = {
           }
         }
       }, getCartAllNumber, this);
+    }),
+
+    // 生成支付订单
+    createPayOrder: /*#__PURE__*/regeneratorRuntime.mark(function createPayOrder(_ref12, _ref13) {
+      var params = _ref12.params;
+      var call = _ref13.call,
+          put = _ref13.put;
+
+      var _ref14, _ref15, err, result;
+
+      return regeneratorRuntime.wrap(function createPayOrder$(_context4) {
+        while (1) {
+          switch (_context4.prev = _context4.next) {
+            case 0:
+              _context4.next = 2;
+              return call((0, _common.toWork)(_service.placeOder), { params: params });
+
+            case 2:
+              _ref14 = _context4.sent;
+              _ref15 = _slicedToArray(_ref14, 2);
+              err = _ref15[0];
+              result = _ref15[1];
+
+              if (!err) {
+                _context4.next = 8;
+                break;
+              }
+
+              return _context4.abrupt("return");
+
+            case 8:
+              if (!(result.messageCode == 900)) {
+                _context4.next = 13;
+                break;
+              }
+
+              _context4.next = 11;
+              return put({
+                type: 'wechatPayMonney',
+                result: result
+              });
+
+            case 11:
+              _context4.next = 14;
+              break;
+
+            case 13:
+              _tips.Tips.toast(result.message || '该订单无法生成');
+
+            case 14:
+            case "end":
+              return _context4.stop();
+          }
+        }
+      }, createPayOrder, this);
+    }),
+
+    // 多订单一起生成订单号
+    createMoreOrder: /*#__PURE__*/regeneratorRuntime.mark(function createMoreOrder(_ref16, _ref17) {
+      var params = _ref16.params;
+      var call = _ref17.call,
+          put = _ref17.put;
+
+      var _ref18, _ref19, err, result;
+
+      return regeneratorRuntime.wrap(function createMoreOrder$(_context5) {
+        while (1) {
+          switch (_context5.prev = _context5.next) {
+            case 0:
+              _context5.next = 2;
+              return call((0, _common.toWork)(_service.multiProduct), params);
+
+            case 2:
+              _ref18 = _context5.sent;
+              _ref19 = _slicedToArray(_ref18, 2);
+              err = _ref19[0];
+              result = _ref19[1];
+
+              if (!err) {
+                _context5.next = 8;
+                break;
+              }
+
+              return _context5.abrupt("return");
+
+            case 8:
+              if (!(result.messageCode == 900)) {
+                _context5.next = 13;
+                break;
+              }
+
+              _context5.next = 11;
+              return put({
+                type: 'wechatPayMonney',
+                result: result
+              });
+
+            case 11:
+              _context5.next = 14;
+              break;
+
+            case 13:
+              _tips.Tips.toast(result.message || '该订单无法生成');
+
+            case 14:
+            case "end":
+              return _context5.stop();
+          }
+        }
+      }, createMoreOrder, this);
+    }),
+
+    // 微信签名 支付模块
+    wechatPayMonney: /*#__PURE__*/regeneratorRuntime.mark(function wechatPayMonney(_ref20, _ref21) {
+      var result = _ref20.result;
+      var call = _ref21.call,
+          select = _ref21.select;
+
+      var openid, _ref22, _ref23, payerr, signData, _signData$data, timestamp, total_fee, noncestr, prepayid, sign;
+
+      return regeneratorRuntime.wrap(function wechatPayMonney$(_context6) {
+        while (1) {
+          switch (_context6.prev = _context6.next) {
+            case 0:
+              _context6.next = 2;
+              return select(function (state) {
+                return state.login;
+              });
+
+            case 2:
+              openid = _context6.sent;
+              _context6.next = 5;
+              return call((0, _common.toWork)(_service.wxPayMonney), {
+                openid: openid.openid,
+                orderNumber: result.data.orderNumber
+              });
+
+            case 5:
+              _ref22 = _context6.sent;
+              _ref23 = _slicedToArray(_ref22, 2);
+              payerr = _ref23[0];
+              signData = _ref23[1];
+
+              if (!payerr) {
+                _context6.next = 11;
+                break;
+              }
+
+              return _context6.abrupt("return");
+
+            case 11:
+              if (signData.messageCode == 900) {
+                // 调起微信支付
+                _signData$data = signData.data, timestamp = _signData$data.timestamp, total_fee = _signData$data.total_fee, noncestr = _signData$data.noncestr, prepayid = _signData$data.prepayid, sign = _signData$data.sign;
+
+                _index2.default.requestPayment({
+                  timeStamp: String(timestamp),
+                  nonceStr: noncestr,
+                  package: "prepay_id=" + prepayid,
+                  signType: 'MD5',
+                  paySign: sign,
+                  total_fee: total_fee,
+                  success: function success(res) {
+                    _tips.Tips.success('支付成功');
+                    _index2.default.reLaunch({
+                      url: '/pages/user/user'
+                    });
+                  },
+                  fail: function fail(error) {
+                    _tips.Tips.toast('支付失败');
+                  }
+                });
+              } else {
+                _tips.Tips.toast(signData.message || '微信签名失败');
+              }
+
+            case 12:
+            case "end":
+              return _context6.stop();
+          }
+        }
+      }, wechatPayMonney, this);
     })
   },
   reducers: {

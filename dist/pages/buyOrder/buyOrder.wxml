@@ -3,7 +3,7 @@
         <view class="buyOrder-box">
             <view class="buy-nav">
                 <view class="nav-item active">全部</view>
-                <view class="buy-item"><text class="nav-item">待发货</text><text class="nav-item">待收货</text><text class="nav-item">待评价</text>
+                <view class="buy-item"><text class="nav-item">待付款</text><text class="nav-item">待发货</text><text class="nav-item">待收货</text><text class="nav-item">待评价</text>
                 </view>
             </view>
             <view class="buy-content">

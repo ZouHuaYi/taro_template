@@ -28,6 +28,10 @@ var _model7 = require("../pages/cart/model.js");
 
 var _model8 = _interopRequireDefault(_model7);
 
+var _model9 = require("../pages/buyOrder/model.js");
+
+var _model10 = _interopRequireDefault(_model9);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-exports.default = [_global2.default, _login2.default, _model2.default, _model4.default, _model6.default, _model8.default];
+exports.default = [_global2.default, _login2.default, _model2.default, _model4.default, _model6.default, _model8.default, _model10.default];
