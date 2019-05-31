@@ -111,8 +111,12 @@ exports.default = {
         while (1) {
           switch (_context2.prev = _context2.next) {
             case 0:
-              _context2.next = 2;
-              return call(_common.loginJudge);
+              if (_common.globalData.userInfo) {
+                _context2.next = 2;
+                break;
+              }
+
+              return _context2.abrupt("return");
 
             case 2:
               formData = _extends({}, params, {
@@ -177,8 +181,12 @@ exports.default = {
         while (1) {
           switch (_context3.prev = _context3.next) {
             case 0:
-              _context3.next = 2;
-              return call(_common.loginJudge);
+              if (_common.globalData.userInfo) {
+                _context3.next = 2;
+                break;
+              }
+
+              return _context3.abrupt("return");
 
             case 2:
               _context3.next = 4;
@@ -255,25 +263,33 @@ exports.default = {
               return _context4.abrupt("return");
 
             case 8:
+              _context4.next = 10;
+              return put({
+                type: 'cart/getCartListData'
+              });
+
+            case 10:
               if (!(result.messageCode == 900)) {
-                _context4.next = 13;
+                _context4.next = 15;
                 break;
               }
 
-              _context4.next = 11;
+              _context4.next = 13;
               return put({
                 type: 'wechatPayMonney',
-                result: result
+                params: {
+                  orderNumber: result.data.orderNumber
+                }
               });
 
-            case 11:
-              _context4.next = 14;
+            case 13:
+              _context4.next = 16;
               break;
 
-            case 13:
+            case 15:
               _tips.Tips.toast(result.message || '该订单无法生成');
 
-            case 14:
+            case 16:
             case "end":
               return _context4.stop();
           }
@@ -318,7 +334,9 @@ exports.default = {
               _context5.next = 11;
               return put({
                 type: 'wechatPayMonney',
-                result: result
+                params: {
+                  orderNumber: result.data.orderNumber
+                }
               });
 
             case 11:
@@ -338,7 +356,7 @@ exports.default = {
 
     // 微信签名 支付模块
     wechatPayMonney: /*#__PURE__*/regeneratorRuntime.mark(function wechatPayMonney(_ref20, _ref21) {
-      var result = _ref20.result;
+      var params = _ref20.params;
       var call = _ref21.call,
           select = _ref21.select;
 
@@ -358,7 +376,7 @@ exports.default = {
               _context6.next = 5;
               return call((0, _common.toWork)(_service.wxPayMonney), {
                 openid: openid.openid,
-                orderNumber: result.data.orderNumber
+                orderNumber: params.orderNumber
               });
 
             case 5:

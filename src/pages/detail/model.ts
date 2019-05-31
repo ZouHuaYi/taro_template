@@ -1,5 +1,5 @@
 
-import {toWork,globalData,loginJudge} from "../../utils/common";
+import {toWork,globalData,} from "../../utils/common";
 import {
   getDetail,
   addOrdeleteCartAction,
@@ -45,7 +45,7 @@ export default {
     },
     // 购物车操作
     *addOrdeleteCartAction({params},{call,put}){
-      yield call(loginJudge);
+      if(!globalData.userInfo) return ;
       const formData = {
         ...params,
         userid:globalData.userInfo.id
@@ -66,7 +66,7 @@ export default {
     },
     // 获取购物车数量
     *getCartAllNumber(_,{call,put}){
-      yield call(loginJudge);
+      if(!globalData.userInfo) return ;
       const [err,result] = yield call(toWork(getShopCartNumber),{userid:globalData.userInfo.id});
       if(err) return ;
       if(result.messageCode==900){
@@ -85,11 +85,18 @@ export default {
     *createPayOrder({params}:InterOrder,{call,put}){
        const [err,result] = yield call(toWork(placeOder),{params,});
        if(err) return ;
+        // 重新执行更新购物车
+        yield put({
+          type: 'cart/getCartListData',
+        })
+
        if(result.messageCode==900){
           // 下单成功
          yield put({
            type:'wechatPayMonney',
-           result,
+           params:{
+             orderNumber:result.data.orderNumber
+           },
          })
        }else {
          Tips.toast(result.message||'该订单无法生成');
@@ -103,19 +110,21 @@ export default {
         // 下单成功
         yield put({
           type:'wechatPayMonney',
-          result,
+          params:{
+            orderNumber:result.data.orderNumber
+          },
         })
       }else {
         Tips.toast(result.message||'该订单无法生成');
       }
     },
     // 微信签名 支付模块
-    *wechatPayMonney({result},{call,select}){
+    *wechatPayMonney({params},{call,select}){
       // 下单成功
       const openid = yield select(state=>state.login);
       const  [payerr,signData] = yield call(toWork(wxPayMonney),{
         openid:openid.openid,
-        orderNumber:result.data.orderNumber,
+        orderNumber:params.orderNumber,
       })
       if(payerr) return ;
       if(signData.messageCode==900){

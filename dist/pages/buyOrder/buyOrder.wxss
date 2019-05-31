@@ -68,6 +68,10 @@
   -webkit-box-shadow: 0 0 10rpx rgba(0, 0, 0, 0.2);
           box-shadow: 0 0 10rpx rgba(0, 0, 0, 0.2);
 }
+.buy-content .content-item .item-title {
+  font-size: 30rpx;
+  padding: 10rpx 0;
+}
 .buy-content .content-item .item-details {
   width: 100%;
   display: -webkit-box;

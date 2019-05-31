@@ -13,7 +13,7 @@ import { connect } from '@tarojs/redux'
 import Layout from '../../components/Layout';
 import WxParse from '../../components/wxParse/wxParse';
 import {Tips} from "../../utils/tips";
-import {loginJudge} from "../../utils/common";
+import {globalData, loginJudge} from "../../utils/common";
 import {interOrder} from "./interface";
 
 
@@ -41,25 +41,25 @@ class Detail extends Component<DetailProps,DetailState > {
   }
 
   async componentDidMount() {
-
      const id = this.$router.params.id;
+
      await this.props.dispatch({
         type:'detail/getDetailData',
         params:{
-          id,
+          id:Number(id),
         }
-      })
+     })
 
-    const {description,specification} = this.props.detail.detailData;
-    if(description){
-      WxParse.wxParse('article', 'html', description, this.$scope, 0)
-    }
-    if(specification&&specification.length===1){
-      this.setState({
-        selectIndex:0,
-        typeid:specification[0].id
-      })
-    }
+      const {description,specification} = this.props.detail.detailData;
+      if(description){
+        WxParse.wxParse('article', 'html', description, this.$scope, 0)
+      }
+      if(specification&&specification.length===1){
+        this.setState({
+          selectIndex:0,
+          typeid:specification[0].id
+        })
+      }
   }
 
   // 点击添加购物车
@@ -68,6 +68,12 @@ class Detail extends Component<DetailProps,DetailState > {
     const id = this.$router.params.id;
     if(typeid===null){
       Tips.toast('请选择产品规格');
+      return;
+    }
+    if(!globalData.userInfo){
+      Taro.navigateTo({
+        url:'/pages/login/login'
+      })
       return;
     }
     this.props.dispatch({
@@ -124,6 +130,14 @@ class Detail extends Component<DetailProps,DetailState > {
 
   }
 
+  onShareAppMessage(obj: Taro.ShareAppMessageObject): Taro.ShareAppMessageReturn {
+    return {
+      path:`pages/detail/detail?id=${this.$router.params.id}`,
+      title:'未来密码'
+    }
+  }
+
+
   render() {
     const {detailData,shopCartNumber} = this.props.detail;
     const {selectIndex} = this.state
@@ -145,7 +159,7 @@ class Detail extends Component<DetailProps,DetailState > {
                 </View>
                 <View className='price-right'>
                   {/*<Button className='sd-btn' size='mini'><Text className='icon iconfont icon-aixin'></Text></Button>*/}
-                  <Button className='sd-btn' size='mini' ><Text className='icon iconfont icon-fenxiang'></Text></Button>
+                  <Button className='sd-btn' openType='share' size='mini' ><Text className='icon iconfont icon-fenxiang'></Text></Button>
                 </View>
               </View>
               <View className='det-title'>
@@ -175,18 +189,18 @@ class Detail extends Component<DetailProps,DetailState > {
         </View>
         <View className='cart-list'>
           <View className='cart-nav'>
-            <View className='cart-nav-item'>
+            <Navigator openType='reLaunch' url='/pages/index/index'  className='cart-nav-item' >
               <Text className='icon iconfont icon-home'></Text>
               <Text className='title'>首页</Text>
-            </View>
+            </Navigator>
             <Navigator openType='reLaunch' url='/pages/cart/cart'  className='cart-nav-item' >
               <Text className='icon iconfont icon-cart-copy'></Text>
               <Text className='title'>购物车</Text>
               {shopCartNumber===0?'':(<Text className='shop-number'>{shopCartNumber}</Text>)}
             </Navigator>
             <View className='cart-nav-item'>
-              <Text className='icon iconfont icon-kefu'></Text>
-              <Text className='title'>客服</Text>
+              {/*<Text className='icon iconfont icon-kefu'></Text>*/}
+              {/*<Text className='title'>客服</Text>*/}
             </View>
           </View>
           <View className='cart-shopping'>

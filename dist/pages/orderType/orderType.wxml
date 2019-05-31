@@ -1,0 +1,36 @@
+<block>
+    <layout noBack="{{false}}" __triggerObserer="{{ _triggerObserer }}" title="订单状态" app-page="page-container" layout="page">
+        <view class="order-box">
+            <view class="order-area-list">
+                <view class="area-data"><text class="ia iconfont icon-ditu"></text>
+                    <view class="area-name">{{orderDetail.receiverName}}</view>
+                    <view class="area-detail">{{orderDetail.receiverArea}}{{orderDetail.receiverAddress}}</view><text class="area-phone">{{orderDetail.receiverPhone}}</text>
+                </view>
+            </view>
+            <view class="line-box"></view>
+            <view class="order-content">
+                <view class="send-type"><text class="send-name">订单号</text><text class="type">{{orderDetail.orderNumber}}</text>
+                </view>
+                <block wx:if="{{orderDetail.items}}">
+                    <view wx:for="{{orderDetail.items}}" wx:for-item="item" wx:for-index="_anonIdx">
+                        <view class="shop-detail">
+                            <view class="shop-img">
+                                <image class="img" src="{{item.thumbnail}}"></image>
+                            </view>
+                            <view class="shop-right"><text class="shop-title">{{item.name}}</text><text class="shop-price">￥{{item.price}}</text><text class="shop-number">x{{item.number}}</text>
+                            </view>
+                        </view>
+                        <view class="send-type"><text class="send-name">单价</text><text class="type">¥{{item.price}}</text>
+                        </view>
+                    </view>
+                </block>
+                <view style="{{anonymousState__temp}}">
+                    <view class="send-type"><text class="send-name">下单时间</text><text class="type">{{anonymousState__temp2}}</text>
+                    </view>
+                    <view class="send-type"><text class="send-name">总金额</text><text class="type">¥{{allPrice}}</text>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </layout>
+</block>

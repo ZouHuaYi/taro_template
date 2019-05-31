@@ -30,7 +30,7 @@
       "list": []
     },
     "miniprogram": {
-      "current": 0,
+      "current": 9,
       "list": [
         {
           "id": 0,
@@ -96,10 +96,10 @@
           "scene": null
         },
         {
-          "id": -1,
+          "id": 9,
           "name": "我的订单",
           "pathName": "pages/buyOrder/buyOrder",
-          "query": "",
+          "query": "status=1",
           "scene": null
         },
         {

@@ -9,7 +9,7 @@
                     <view class="price-left"><text class="normal-price">¥ {{detailData.discount_price || 0}}</text><text class="default-price">¥ {{detailData.original_price || 0}}</text>
                     </view>
                     <view class="price-right">
-                        <button class="sd-btn" size="mini"><text class="icon iconfont icon-fenxiang"></text>
+                        <button class="sd-btn" open-type="share" size="mini"><text class="icon iconfont icon-fenxiang"></text>
                         </button>
                     </view>
                 </view>
@@ -34,14 +34,13 @@
         </view>
         <view class="cart-list">
             <view class="cart-nav">
-                <view class="cart-nav-item"><text class="icon iconfont icon-home"></text><text class="title">首页</text>
-                </view>
+                <navigator open-type="reLaunch" url="/pages/index/index" class="cart-nav-item"><text class="icon iconfont icon-home"></text><text class="title">首页</text>
+                </navigator>
                 <navigator open-type="reLaunch" url="/pages/cart/cart" class="cart-nav-item"><text class="icon iconfont icon-cart-copy"></text><text class="title">购物车</text>
                     <block wx:if="{{!(shopCartNumber === 0)}}"><text class="shop-number">{{shopCartNumber}}</text>
                     </block>
                 </navigator>
-                <view class="cart-nav-item"><text class="icon iconfont icon-kefu"></text><text class="title">客服</text>
-                </view>
+                <view class="cart-nav-item"></view>
             </view>
             <view class="cart-shopping"><text class="cart-add" bindtap="addCart">加入购物车</text><text bindtap="goToBuyPlace" class="cart-buy">立即购买</text>
             </view>

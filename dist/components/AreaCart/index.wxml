@@ -3,7 +3,7 @@
         <view class="order-area-list">
             <block>
                 <block wx:if="{{areaData}}">
-                    <view class="area-data"><text class="ia iconfont icon-kefu"></text>
+                    <view class="area-data"><text class="ia iconfont icon-ditu"></text>
                         <view class="area-name">{{areaData.receiveName}}</view>
                         <view class="area-detail">{{areaData.area}}{{areaData.address}}</view><text class="area-phone">{{areaData.receivePhone}}</text><text class="jt iconfont icon-jiantou4"></text>
                     </view>

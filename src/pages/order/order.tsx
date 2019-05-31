@@ -13,6 +13,7 @@ import OrderCart from '../../components/OrderCart';
 
 import './order.less'
 import {Tips} from "../../utils/tips";
+import withShare from "../../components/Hoc/withShare";
 
 interface OrderProps {
   detail:any,
@@ -30,6 +31,8 @@ interface OrderState {
 }
 
 @connect(({detail,areaList,cart})=>({detail,areaList,cart}),)
+// @ts-ignore
+@withShare()
 class Order extends Component<OrderProps,OrderState > {
  
   constructor(props: OrderProps) {
@@ -58,8 +61,9 @@ class Order extends Component<OrderProps,OrderState > {
     }else if(type=='cart'){
       // 计算购物车过来的数据
       payAccountList.forEach( item=>{
-        let it = item.item[0];
-        price += Number(it.discountPrice*it.number);
+        item.item.forEach(it=>{
+          price += Number(it.discountPrice*it.number);
+        })
       })
 
       this.setState({
@@ -142,18 +146,6 @@ class Order extends Component<OrderProps,OrderState > {
       let accountList = [...payAccountList];
 
       accountList = accountList.map(item=>{
-
-        // let it = {...item};
-        // item.hospital = {
-        //   id:it.hospital.id
-        // }
-        // item.item = [{
-        //   number: it.item[0].number,
-        //   productId: it.item[0].productId,
-        //   shoppingCartId: it.item[0].shoppingCartId,
-        //   specificationGroupId: it.item[0].specificationGroupId,
-        // }]
-
         item.remark = remark;
         return item;
       })
@@ -166,8 +158,6 @@ class Order extends Component<OrderProps,OrderState > {
           item,
         }
       })
-
-
     }
   }
 

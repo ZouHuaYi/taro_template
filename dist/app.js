@@ -62,7 +62,7 @@ var _App = function (_BaseComponent) {
     var _this = _possibleConstructorReturn(this, (_App.__proto__ || Object.getPrototypeOf(_App)).apply(this, arguments));
 
     _this.config = {
-      "pages": ['pages/index/index', 'pages/detail/detail', 'pages/cart/cart', 'pages/shopIndex/shopIndex', 'pages/order/order', 'pages/addArea/addArea', 'pages/areaList/areaList', 'pages/user/user', 'pages/search/search', 'pages/login/login', 'pages/buyOrder/buyOrder', 'pages/test/index', 'pages/impower/impower'],
+      "pages": ['pages/index/index', 'pages/detail/detail', 'pages/cart/cart', 'pages/shopIndex/shopIndex', 'pages/order/order', 'pages/addArea/addArea', 'pages/areaList/areaList', 'pages/user/user', 'pages/search/search', 'pages/login/login', 'pages/buyOrder/buyOrder', 'pages/test/index', 'pages/impower/impower', 'pages/orderType/orderType'],
       "window": {
         backgroundTextStyle: 'light',
         navigationBarBackgroundColor: '#fff',
@@ -75,8 +75,8 @@ var _App = function (_BaseComponent) {
         "selectedColor": "#EE6697",
         "list": [{
           "pagePath": "pages/index/index",
-          "iconPath": "./assets/tab/shop_default.png",
-          "selectedIconPath": "./assets/tab/shop_active.png",
+          "iconPath": "./assets/tab/home_def.png",
+          "selectedIconPath": "./assets/tab/home_act.png",
           "text": "首页"
         }, {
           "pagePath": "pages/shopIndex/shopIndex",
@@ -85,16 +85,17 @@ var _App = function (_BaseComponent) {
           "text": "全部商品"
         }, {
           "pagePath": "pages/cart/cart",
-          "iconPath": "./assets/tab/shop_default.png",
-          "selectedIconPath": "./assets/tab/shop_active.png",
+          "iconPath": "./assets/tab/cart_def.png",
+          "selectedIconPath": "./assets/tab/cart_act.png",
           "text": "购物车"
         }, {
           "pagePath": "pages/user/user",
-          "iconPath": "./assets/tab/shop_default.png",
-          "selectedIconPath": "./assets/tab/shop_active.png",
+          "iconPath": "./assets/tab/user_def.png",
+          "selectedIconPath": "./assets/tab/user_act.png",
           "text": "个人中心"
         }]
-      }
+      },
+      "navigateToMiniProgramAppIdList": ["wxe121a943656499fc"]
     };
     return _this;
   }

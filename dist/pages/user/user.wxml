@@ -3,43 +3,51 @@
         <view class="user-box">
             <view class="user-header">
                 <view class="user-avter">
-                    <image class="img" src="http://mei3mei.oss-cn-shenzhen.aliyuncs.com/uploadfiles/banner/5f6c56ff1aae4df093039ad65b4a16ea.jpg"></image>
+                    <image class="img" src="{{userInfo.avatar || default_logo}}"></image>
                 </view>
-                <view class="user-content">
-                    <view class="user-name">未登录</view>
-                    <view class="user-login">登录</view>
-                </view>
+                <block>
+                    <block wx:if="{{userInfo.nickname}}">
+                        <view class="user-content">
+                            <view class="user-name">{{userInfo.nickname}}</view>
+                            <view class="user-phone">{{userInfo.phone}}</view>
+                        </view>
+                    </block>
+                    <block wx:else>
+                        <view class="user-content">
+                            <view class="user-name">未登录</view>
+                            <navigator open-type="navigate" url="/pages/login/login" class="user-login">登录</navigator>
+                        </view>
+                    </block>
+                </block>
             </view>
             <view class="line-box"></view>
             <view class="user-order">
-                <view class="order-title"><text class="order-tit">我的订单</text><text class="order-all">查看全部></text>
+                <view class="order-title"><text class="order-tit">我的订单</text>
+                    <navigator open-type="navigate" url="/pages/buyOrder/buyOrder?status=0" class="order-all">查看全部></navigator>
                 </view>
                 <view class="order-list">
-                    <navigator class="order-item" open-type="navigate" url="/pages/buyOrder/buyOrder">
-                        <image class="order-icon" src="http://mei3mei.oss-cn-shenzhen.aliyuncs.com/uploadfiles/banner/5f6c56ff1aae4df093039ad65b4a16ea.jpg"></image><text class="order-name">待付款</text>
+                    <navigator class="order-item" open-type="navigate" url="/pages/buyOrder/buyOrder?status=1">
+                        <image class="order-icon" src="{{wait_pay}}"></image><text class="order-name">待付款</text>
                     </navigator>
-                    <view class="order-item">
-                        <image class="order-icon" src="http://mei3mei.oss-cn-shenzhen.aliyuncs.com/uploadfiles/banner/5f6c56ff1aae4df093039ad65b4a16ea.jpg"></image><text class="order-name">待发货</text>
-                    </view>
-                    <view class="order-item">
-                        <image class="order-icon" src="http://mei3mei.oss-cn-shenzhen.aliyuncs.com/uploadfiles/banner/5f6c56ff1aae4df093039ad65b4a16ea.jpg"></image><text class="order-name">待收货</text>
-                    </view>
-                    <view class="order-item">
-                        <image class="order-icon" src="http://mei3mei.oss-cn-shenzhen.aliyuncs.com/uploadfiles/banner/5f6c56ff1aae4df093039ad65b4a16ea.jpg"></image><text class="order-name">待评价</text>
-                    </view>
-                    <view class="order-item">
-                        <image class="order-icon" src="http://mei3mei.oss-cn-shenzhen.aliyuncs.com/uploadfiles/banner/5f6c56ff1aae4df093039ad65b4a16ea.jpg"></image><text class="order-name">退款/售后</text>
-                    </view>
+                    <navigator class="order-item" open-type="navigate" url="/pages/buyOrder/buyOrder?status=2">
+                        <image class="order-icon" src="{{wait_send}}"></image><text class="order-name">待发货</text>
+                    </navigator>
+                    <navigator class="order-item" open-type="navigate" url="/pages/buyOrder/buyOrder?status=3">
+                        <image class="order-icon" src="{{wait_have}}"></image><text class="order-name">待收货</text>
+                    </navigator>
+                    <navigator class="order-item" open-type="navigate" url="/pages/buyOrder/buyOrder?status=5">
+                        <image class="order-icon" src="{{wait_commit}}"></image><text class="order-name">待评价</text>
+                    </navigator>
                 </view>
             </view>
             <view class="line-box"></view>
             <view class="nav-list">
                 <view class="nav-item">
-                    <view class="nav-icon-text"><text class="icon iconfont icon-kefu"></text><text class="nav-text">联系客服</text>
+                    <view class="nav-icon-text" bindtap="callPhone"><text class="icon iconfont icon-kefu"></text><text class="nav-text">联系客服</text>
                     </view><text class="nav-to iconfont icon-jiantou4"></text>
                 </view>
-                <view class="nav-item">
-                    <view class="nav-icon-text"><text class="icon iconfont icon-kefu"></text><text class="nav-text">我的服务</text>
+                <view class="nav-item" bindtap="navToOrderApp">
+                    <view class="nav-icon-text"><text class="icon iconfont icon-wodetuiguang"></text><text class="nav-text">我的推广</text>
                     </view><text class="nav-to iconfont icon-jiantou4"></text>
                 </view>
             </view>

@@ -1,7 +1,7 @@
 <block>
-    <layout noBack="{{false}}" __triggerObserer="{{ _triggerObserer }}" title="标题" app-page="page-container" layout="page">
+    <view class="impower-cont">
         <view class="impower-box">
             <button type="primary" open-type="getUserInfo" bindgetuserinfo="getUserInfo">微信授权登录</button>
         </view>
-    </layout>
+    </view>
 </block>

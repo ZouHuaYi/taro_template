@@ -63,7 +63,8 @@ exports.default = {
               return put({
                 type: 'save',
                 data: {
-                  cartList: result.data
+                  cartList: result.data,
+                  payAccountList: []
                 }
               });
 

@@ -5,7 +5,7 @@ import { Tips } from './tips'
 
 const Admin_Root = 'https://admin.topmei3mei.com';
 const Test_Root = 'https://test.topmei3mei.com';
-const dev_status = false;
+const dev_status = true;
 const Root = dev_status?Admin_Root:Test_Root;
 
 interface ApiOptions {
@@ -43,6 +43,10 @@ export default function request(options:ApiOptions) {
           if(dat.messageCode==904 || dat.messageCode==906 || dat.messageCode==903){
             // 这里的判断是授权，这个是用户账户异常的
             globalData.userInfo = null;
+            Tips.loaded();
+            Taro.navigateTo({
+              url:'/pages/login/login',
+            })
           }else {
             resole(dat);
           }

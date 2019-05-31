@@ -13,9 +13,6 @@
                 <view class="shop-title-select">
                     <view class="{{'nav ' + (sellStatus ? 'active' : '')}}" bindtap="orderTabList" data-e-tap-so="this" data-e-tap-a-a="{{1}}">销量</view>
                     <view class="{{'nav ' + (priceStatus != 0 ? 'active' : '')}}" bindtap="priceOrder">价格{{priceStatus === 1 ? '▼' : ''}}{{priceStatus === 2 ? '▲' : ''}}</view>
-                    <navigator class="search-btn" url="/pages/search/search" open-type="navigate">
-                        <icon size="20" type="search"></icon>
-                    </navigator>
                 </view>
                 <view class="shop-all-container">
                     <scroll-view scroll-y="{{true}}" class="shop-scroll" bindscrolltolower="addProductList">

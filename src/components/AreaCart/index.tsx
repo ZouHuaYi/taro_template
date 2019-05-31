@@ -21,7 +21,7 @@ export default class AreaCart extends Component<AreaProps>{
         <View className='order-area-list'>
           {areaData?(
             <View className='area-data'>
-              <Text className='ia iconfont icon-kefu'></Text>
+              <Text className='ia iconfont icon-ditu'></Text>
               <View className='area-name'>{areaData.receiveName}</View>
               <View className='area-detail'>{areaData.area}{areaData.address}</View>
               <Text className='area-phone'>{areaData.receivePhone}</Text>

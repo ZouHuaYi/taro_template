@@ -14,6 +14,7 @@ import './cart.less'
 import {loginStatus} from "../../utils/common";
 import {Tips} from "../../utils/tips";
 import OnData from "../../components/OnData";
+import withShare from "../../components/Hoc/withShare";
 
 
 interface CartProps {
@@ -29,6 +30,8 @@ interface CartState {
 }
 
 @connect(({cart})=>({cart}))
+// @ts-ignore
+@withShare()
 class Cart extends Component<CartProps,CartState > {
 
   constructor(props: CartProps) {
@@ -72,7 +75,6 @@ class Cart extends Component<CartProps,CartState > {
       allMonney,
       allSelectStatus,
     })
-
   }
 
   // 增加购买数量
@@ -164,27 +166,36 @@ class Cart extends Component<CartProps,CartState > {
       return ;
     }
 
-    let newList = [];
+    let newList:any = [];
     // 合并 相同医院的数据一起
     payAccountList.forEach(item=>{
+      if(newList.length==0){
+        newList.push(item);
+        return;
+      }
+      console.log(item.hospital,'x-x')
+      let status:boolean = false;
       newList = newList.map(it=>{
-        let t = it.item;
         if(item.hospital.id==it.hospital.id){
           // 如果已经存在着个医院的时候
-          t.push(item.item[0]);
+          status = true;
+          it.item.push(item.item[0]);
         }
-        return t;
+        return it;
       })
-      newList.push(item);
+
+      if(!status){
+        newList.push(item);
+      }
+
+
     })
 
 
-    // console.log(payAccountList);
-    return ;
     await this.props.dispatch({
       type:'cart/save',
       data:{
-        payAccountList,
+        payAccountList:newList,
       }
     })
 
@@ -218,8 +229,10 @@ class Cart extends Component<CartProps,CartState > {
 
   }
 
+
+
   render() {
-    const {cartShopListData,cartStatusObj,allMonney,allSelectStatus} = this.state;
+    const {cartStatusObj,allMonney,allSelectStatus} = this.state;
     const {cartList} = this.props.cart;
 
     return (

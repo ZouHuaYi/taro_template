@@ -64,6 +64,12 @@ var Detail = (_temp2 = _class = function (_BaseComponent) {
         _tips.Tips.toast('请选择产品规格');
         return;
       }
+      if (!_common.globalData.userInfo) {
+        _index2.default.navigateTo({
+          url: '/pages/login/login'
+        });
+        return;
+      }
       _this.props.dispatch({
         type: 'detail/addOrdeleteCartAction',
         params: {
@@ -157,7 +163,7 @@ var Detail = (_temp2 = _class = function (_BaseComponent) {
                 return this.props.dispatch({
                   type: 'detail/getDetailData',
                   params: {
-                    id: id
+                    id: Number(id)
                   }
                 });
 
@@ -188,6 +194,14 @@ var Detail = (_temp2 = _class = function (_BaseComponent) {
 
       return componentDidMount;
     }()
+  }, {
+    key: "onShareAppMessage",
+    value: function onShareAppMessage(obj) {
+      return {
+        path: "pages/detail/detail?id=" + this.$router.params.id,
+        title: '未来密码'
+      };
+    }
   }, {
     key: "_createData",
     value: function _createData() {

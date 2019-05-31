@@ -59,7 +59,7 @@
   width: 100%;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
-  padding: 30rpx 20rpx 10rpx;
+  padding: 30rpx 20rpx 30rpx;
   font-size: 30rpx;
   font-weight: 600;
 }

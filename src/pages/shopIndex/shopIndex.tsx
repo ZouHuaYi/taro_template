@@ -16,6 +16,7 @@ import Layout from '../../components/Layout';
 import NoData from '../../components/OnData';
 
 import './shopIndex.less'
+import withShare from "../../components/Hoc/withShare";
 
 interface ShopIndexProps {
   dispatch:any,
@@ -29,7 +30,10 @@ interface ShopIndexState {
   priceStatus:number,
 }
 
+
 @connect(({shopIndex})=>({shopIndex}),)
+// @ts-ignore
+@withShare()
 class ShopIndex extends Component<ShopIndexProps,ShopIndexState > {
  
   constructor(props: ShopIndexProps) {
@@ -195,7 +199,7 @@ class ShopIndex extends Component<ShopIndexProps,ShopIndexState > {
            <View className='shop-title-select'>
               <View className={`nav ${sellStatus?'active':''}`} onClick={this.orderTabList.bind(this,1)}>销量</View>
               <View className={`nav ${priceStatus!=0?'active':''}`}  onClick={this.priceOrder}   >价格{priceStatus===1?'▼':''}{priceStatus===2?'▲':''} </View>
-             <Navigator className='search-btn' url='/pages/search/search' openType='navigate'><Icon size={'20'} type={'search'}></Icon></Navigator>
+             {/*<Navigator className='search-btn' url='/pages/search/search' openType='navigate'><Icon size={'20'} type={'search'}></Icon></Navigator>*/}
            </View>
             <View className='shop-all-container'>
               <ScrollView scrollY className='shop-scroll' onScrolltolower={this.addProductList}>
@@ -213,7 +217,6 @@ class ShopIndex extends Component<ShopIndexProps,ShopIndexState > {
                       }
                     </Swiper>):''
                   }
-
                   <View className='shop-bar-list'>
                     {
                       productList&&productList.length>0?
@@ -234,7 +237,6 @@ class ShopIndex extends Component<ShopIndexProps,ShopIndexState > {
                         )
                       }):<NoData title={'没有更多数据'} />
                     }
-
                   </View>
                 </View>
               </ScrollView>

@@ -11,7 +11,7 @@ let registered
 function createApp(options) {
   options.onAction = [createLogger()]
   app = create(options)
-  app.use(createLoading({}))
+  // app.use(createLoading({}))
 
   if(!registered) options.models.forEach(model => app.model(model))
   registered = true

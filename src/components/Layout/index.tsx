@@ -18,6 +18,7 @@ class Layout extends Component<LayoutProps>{
   componentDidMount() {
 
   }
+
   render(){
     const {title,isHome,noBack,noHeader} = this.props;
     const statusBarHeight = globalData.systemInfo?globalData.systemInfo.statusBarHeight:0;

@@ -62,47 +62,65 @@ var loginStatus = exports.loginStatus = function () {
                         err = _ref4[0];
                         result = _ref4[1];
 
-                        if (err || !result.authSetting['scope.userInfo']) {
-                          // 用户没有授权的时候跳转到授权页面
-                          _index2.default.navigateTo({
-                            url: '/pages/impower/impower '
-                          });
-                          login_type = false;
-                          reject();
+                        if (!(err || !result.authSetting['scope.userInfo'])) {
+                          _context.next = 19;
+                          break;
                         }
-                        _context.next = 17;
+
+                        // 用户没有授权的时候跳转到授权页面
+                        _index2.default.navigateTo({
+                          url: '/pages/impower/impower'
+                        });
+                        login_type = false;
+                        reject();
+                        return _context.abrupt("return");
+
+                      case 19:
+                        _context.next = 21;
                         return toWork(_index2.default.getUserInfo)();
 
-                      case 17:
+                      case 21:
                         _ref5 = _context.sent;
                         _ref6 = _slicedToArray(_ref5, 2);
                         userErr = _ref6[0];
                         user = _ref6[1];
 
-                        if (userErr) {
-                          // 无法获取用户信息
-                          _tips2.default.toast('小程序无法获取用户信息，请重启小程序');
-                          login_type = false;
-                          reject();
+                        if (!userErr) {
+                          _context.next = 30;
+                          break;
                         }
+
+                        // 无法获取用户信息
+                        _tips2.default.toast('小程序无法获取用户信息，请重启小程序');
+                        login_type = false;
+                        reject();
+                        return _context.abrupt("return");
+
+                      case 30:
                         globalData.wxUseInfoData = user;
-                        _context.next = 25;
+                        _context.next = 33;
                         return toWork(_index2.default.login)();
 
-                      case 25:
+                      case 33:
                         _ref7 = _context.sent;
                         _ref8 = _slicedToArray(_ref7, 2);
                         loginErr = _ref8[0];
                         login = _ref8[1];
 
-                        if (loginErr) {
-                          // 小程序无法登录
-                          _tips2.default.toast('小程序无法登录，请重启小程序');
-                          login_type = false;
-                          reject();
+                        if (!loginErr) {
+                          _context.next = 42;
+                          break;
                         }
-                        _context.prev = 30;
-                        _context.next = 33;
+
+                        // 小程序无法登录
+                        _tips2.default.toast('小程序无法登录，请重启小程序');
+                        login_type = false;
+                        reject();
+                        return _context.abrupt("return");
+
+                      case 42:
+                        _context.prev = 42;
+                        _context.next = 45;
                         return globalData.store.dispatch({
                           type: 'login/wxLoginFn',
                           loginData: {
@@ -112,25 +130,25 @@ var loginStatus = exports.loginStatus = function () {
                           }
                         });
 
-                      case 33:
+                      case 45:
                         // 获取购物车的数量
                         globalData.store.dispatch({
                           type: 'detail/getCartAllNumber'
                         });
 
-                      case 34:
-                        _context.prev = 34;
+                      case 46:
+                        _context.prev = 46;
 
                         login_type = false;
                         resolve(true);
-                        return _context.finish(34);
+                        return _context.finish(46);
 
-                      case 38:
+                      case 50:
                       case "end":
                         return _context.stop();
                     }
                   }
-                }, _callee, _this, [[30,, 34, 38]]);
+                }, _callee, _this, [[42,, 46, 50]]);
               }));
 
               return function (_x, _x2) {
@@ -155,6 +173,7 @@ var loginStatus = exports.loginStatus = function () {
 
 exports.toWork = toWork;
 exports.loginJudge = loginJudge;
+exports.formatTime = formatTime;
 
 var _index = require("../npm/@tarojs/taro-weapp/index.js");
 
@@ -223,3 +242,25 @@ function loginJudge() {
     resolve();
   });
 }
+// 时间格式化
+function formatTime(fmt, time) {
+  var timer = new Date(time);
+  var o = {
+    "M+": timer.getMonth() + 1,
+    "d+": timer.getDate(),
+    "H+": timer.getHours(),
+    "m+": timer.getMinutes(),
+    "s+": timer.getSeconds(),
+    "S": timer.getMilliseconds() //毫秒
+  };
+  if (/(y+)/.test(fmt)) {
+    fmt = fmt.replace(RegExp.$1, (timer.getFullYear() + "").substr(4 - RegExp.$1.length));
+  }
+  for (var k in o) {
+    if (new RegExp("(" + k + ")").test(fmt)) {
+      fmt = fmt.replace(RegExp.$1, RegExp.$1.length == 1 ? o[k] : ("00" + o[k]).substr(("" + o[k]).length));
+    }
+  }
+  return fmt;
+}
+;

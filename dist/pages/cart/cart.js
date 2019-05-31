@@ -26,6 +26,10 @@ var _common = require("../../utils/common.js");
 
 var _tips = require("../../utils/tips.js");
 
+var _withShare = require("../../components/Hoc/withShare.js");
+
+var _withShare2 = _interopRequireDefault(_withShare);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
@@ -184,26 +188,39 @@ var Cart = (_temp2 = _class = function (_BaseComponent) {
               // 合并 相同医院的数据一起
 
               payAccountList.forEach(function (item) {
+                if (newList.length == 0) {
+                  newList.push(item);
+                  return;
+                }
+                console.log(item.hospital, 'x-x');
+                var status = false;
                 newList = newList.map(function (it) {
-                  var t = it.item;
                   if (item.hospital.id == it.hospital.id) {
                     // 如果已经存在着个医院的时候
-                    t.push(item.item[0]);
+                    status = true;
+                    it.item.push(item.item[0]);
                   }
-                  return t;
+                  return it;
                 });
-                newList.push(item);
+                if (!status) {
+                  newList.push(item);
+                }
               });
-              // console.log(payAccountList);
-              return _context2.abrupt("return");
+              _context2.next = 12;
+              return _this.props.dispatch({
+                type: 'cart/save',
+                data: {
+                  payAccountList: newList
+                }
+              });
 
-            case 13:
+            case 12:
               // 跳转
               _index2.default.navigateTo({
                 url: '/pages/order/order?type=cart'
               });
 
-            case 14:
+            case 13:
             case "end":
               return _context2.stop();
           }
@@ -290,7 +307,6 @@ var Cart = (_temp2 = _class = function (_BaseComponent) {
       ;
 
       var _state = this.__state,
-          cartShopListData = _state.cartShopListData,
           cartStatusObj = _state.cartStatusObj,
           allMonney = _state.allMonney,
           allSelectStatus = _state.allSelectStatus;
@@ -317,7 +333,10 @@ var Cart = (_temp2 = _class = function (_BaseComponent) {
 Cart = tslib_1.__decorate([(0, _index3.connect)(function (_ref5) {
   var cart = _ref5.cart;
   return { cart: cart };
-})], Cart);
+})
+// @ts-ignore
+
+, (0, _withShare2.default)()], Cart);
 exports.default = Cart;
 
 Component(require('../../npm/@tarojs/taro-weapp/index.js').default.createComponent(Cart, true));

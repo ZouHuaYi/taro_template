@@ -46,7 +46,8 @@ class App extends Component {
       'pages/login/login',
       'pages/buyOrder/buyOrder',
       'pages/test/index',
-      'pages/impower/impower'
+      'pages/impower/impower',
+      'pages/orderType/orderType'
     ],
     "window": {
       backgroundTextStyle: 'light',
@@ -61,8 +62,8 @@ class App extends Component {
       "list":[
         {
           "pagePath": "pages/index/index",
-          "iconPath": "./assets/tab/shop_default.png",
-          "selectedIconPath": "./assets/tab/shop_active.png",
+          "iconPath": "./assets/tab/home_def.png",
+          "selectedIconPath": "./assets/tab/home_act.png",
           "text": "首页"
         },
         {
@@ -73,18 +74,19 @@ class App extends Component {
         },
         {
           "pagePath": "pages/cart/cart",
-          "iconPath": "./assets/tab/shop_default.png",
-          "selectedIconPath": "./assets/tab/shop_active.png",
+          "iconPath": "./assets/tab/cart_def.png",
+          "selectedIconPath": "./assets/tab/cart_act.png",
           "text": "购物车"
         },
         {
           "pagePath": "pages/user/user",
-          "iconPath": "./assets/tab/shop_default.png",
-          "selectedIconPath": "./assets/tab/shop_active.png",
+          "iconPath": "./assets/tab/user_def.png",
+          "selectedIconPath": "./assets/tab/user_act.png",
           "text": "个人中心"
         }
       ]
-    }
+    },
+    "navigateToMiniProgramAppIdList":["wxe121a943656499fc"]
   }
 
   async componentDidMount () {
@@ -100,6 +102,7 @@ class App extends Component {
      loginStatus();
 
   }
+
 
   componentDidHide () {}
 

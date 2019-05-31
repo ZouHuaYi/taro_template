@@ -22,6 +22,12 @@ var _index2 = require("../../npm/@tarojs/redux/index.js");
 
 var _tips = require("../../utils/tips.js");
 
+var _withShare = require("../../components/Hoc/withShare.js");
+
+var _withShare2 = _interopRequireDefault(_withShare);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
@@ -101,16 +107,6 @@ var Order = (_temp2 = _class = function (_BaseComponent) {
 
         var accountList = [].concat(_toConsumableArray(payAccountList));
         accountList = accountList.map(function (item) {
-          // let it = {...item};
-          // item.hospital = {
-          //   id:it.hospital.id
-          // }
-          // item.item = [{
-          //   number: it.item[0].number,
-          //   productId: it.item[0].productId,
-          //   shoppingCartId: it.item[0].shoppingCartId,
-          //   specificationGroupId: it.item[0].specificationGroupId,
-          // }]
           item.remark = remark;
           return item;
         });
@@ -167,8 +163,9 @@ var Order = (_temp2 = _class = function (_BaseComponent) {
                 } else if (type == 'cart') {
                   // 计算购物车过来的数据
                   payAccountList.forEach(function (item) {
-                    var it = item.item[0];
-                    price += Number(it.discountPrice * it.number);
+                    item.item.forEach(function (it) {
+                      price += Number(it.discountPrice * it.number);
+                    });
                   });
                   this.setState({
                     hasIdState: false
@@ -265,7 +262,10 @@ Order = tslib_1.__decorate([(0, _index2.connect)(function (_ref3) {
       areaList = _ref3.areaList,
       cart = _ref3.cart;
   return { detail: detail, areaList: areaList, cart: cart };
-})], Order);
+})
+// @ts-ignore
+
+, (0, _withShare2.default)()], Order);
 exports.default = Order;
 
 Component(require('../../npm/@tarojs/taro-weapp/index.js').default.createComponent(Order, true));
